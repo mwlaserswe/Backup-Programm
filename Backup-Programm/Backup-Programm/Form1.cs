@@ -140,6 +140,12 @@ namespace Backup_Programm
             }
         }
 
+        /// <summary>
+        /// Einfaches Testprogramm
+        /// - Die Datei Test 1.txt wird kopiert, wenn es eine neuere Version gibt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFileCopy_Click(object sender, EventArgs e)
         {
             string curFile = @"D:\Eigene Dateien\Test\Test 1.txt";
@@ -147,7 +153,12 @@ namespace Backup_Programm
 
             if (! File.Exists(targetFile))
             {
-               //targetFile = Path.Combine(targetFolder.FullName, System.IO.Path.GetFileName(curFile));
+                //targetFile = Path.Combine(targetFolder.FullName, System.IO.Path.GetFileName(curFile));
+                if (!Directory.Exists(@"D:\Test Backup Server\Test"))
+                {
+                    Directory.CreateDirectory(@"D:\Test Backup Server\Test");
+                }
+                
                 System.IO.File.Copy(curFile, targetFile);
             }
             else

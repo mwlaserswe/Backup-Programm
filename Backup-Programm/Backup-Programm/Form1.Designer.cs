@@ -36,6 +36,8 @@
             this.btnGetAppDir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnFileCopy = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBaseDir = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,16 +53,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 156);
+            this.textBox1.Location = new System.Drawing.Point(51, 345);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(419, 47);
+            this.textBox1.Size = new System.Drawing.Size(1258, 47);
             this.textBox1.TabIndex = 1;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 41;
-            this.listBox1.Location = new System.Drawing.Point(96, 255);
+            this.listBox1.Location = new System.Drawing.Point(51, 609);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(1246, 455);
             this.listBox1.TabIndex = 2;
@@ -72,7 +74,7 @@
             this.toolStripMenuFile});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1387, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(1396, 49);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -112,11 +114,29 @@
             this.btnFileCopy.UseVisualStyleBackColor = true;
             this.btnFileCopy.Click += new System.EventHandler(this.btnFileCopy_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(51, 194);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(437, 41);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Basisverzeichnis für das Backup:";
+            // 
+            // txtBaseDir
+            // 
+            this.txtBaseDir.Location = new System.Drawing.Point(51, 238);
+            this.txtBaseDir.Name = "txtBaseDir";
+            this.txtBaseDir.Size = new System.Drawing.Size(1258, 47);
+            this.txtBaseDir.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1387, 842);
+            this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.txtBaseDir);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFileCopy);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnGetAppDir);
@@ -144,6 +164,8 @@
         private System.Windows.Forms.Button btnGetAppDir;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnFileCopy;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBaseDir;
     }
 }
 
