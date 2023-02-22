@@ -5,7 +5,9 @@
 // Dir der Anw.     https://dotnet-snippets.de/snippet/das-verzeichnis-der-anwendung-ermitteln/23?utm_content=cmp-true
 // File Copy        https://dotnet-snippets.de/snippet/dateilisten-kopieren/1315
 
-
+//  Backup: z.B. von D:\Eigene Dateien\Test\Text Folder 1      --->   D:\Test Backup Server\Test\Text Folder 1
+//  BasisDirSource: D:\Eigene Dateien\
+//  BasisDirBackup: D:\Test Backup Server\
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,9 @@ namespace Backup_Programm
     public partial class Form1 : Form
     {
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
+
+        string BasisDirSource = @"D:\Eigene Dateien\";
+        string BasisDirBackup = @"D:\Test Backup Server\";
 
         public Form1()
         {
@@ -148,8 +153,14 @@ namespace Backup_Programm
         /// <param name="e"></param>
         private void btnFileCopy_Click(object sender, EventArgs e)
         {
+
+ 
+
             string curFile = @"D:\Eigene Dateien\Test\Test 1.txt";
             string targetFile = @"D:\Test Backup Server\Test\Test 1.txt";
+
+            GenerateFileNames(curFile,  BasisDirSource,  BasisDirBackup);
+
 
             if (! File.Exists(targetFile))
             {
@@ -173,9 +184,14 @@ namespace Backup_Programm
                     ;
                 }
             }
+        }
+        private void GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirBackup)
+        {
+            int lenDirSource = BasisDirSource.Length;
+            int lenDirBackup = BasisDirBackup.Length;
 
-
-
+            string FileName = SourceFillFullPath.Substring(lenDirSource);
+            string targetFile = Path.Join(BasisDirBackup,FileName);
 
         }
     }
