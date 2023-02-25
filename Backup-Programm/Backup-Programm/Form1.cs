@@ -22,8 +22,20 @@ using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 
+using System.Xml.Serialization;
+
 namespace Backup_Programm
 {
+
+    [Serializable]
+    public class Person
+    {
+        public string FirstName;
+        public string LastName;
+        public DateTime BirthDate;
+    }
+
+
     public partial class Form1 : Form
     {
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
@@ -94,7 +106,7 @@ namespace Backup_Programm
 
                     listBox1.Items.Add(SourceFile.FullName);
                     listBox1.Update();
-                    String TargetFileFullPath = GenerateFileNames (SourceFile.FullName, BasisDirSource, BasisDirTarget);
+                    String TargetFileFullPath = GenerateFileNames(SourceFile.FullName, BasisDirSource, BasisDirTarget);
 
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
                     FileInfo TargetFile = new FileInfo(TargetFileFullPath);
@@ -128,7 +140,7 @@ namespace Backup_Programm
 
 
 
-        private void Ablauf ()
+        private void Ablauf()
         {
             FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
             textBox1.Text = fi.DirectoryName;
@@ -136,7 +148,7 @@ namespace Backup_Programm
             string BackupList = fi.DirectoryName + "\\BackupList.txt";
 
             int counter = 0;
- 
+
             // Read the file and display it line by line.  
             foreach (string line in System.IO.File.ReadLines(BackupList))
             {
@@ -148,7 +160,7 @@ namespace Backup_Programm
 
                     WalkDirectoryTree(di);
                     counter++;
- 
+
                 }
             }
         }
@@ -162,22 +174,22 @@ namespace Backup_Programm
         private void btnFileCopy_Click(object sender, EventArgs e)
         {
 
- 
+
 
             string curFile = @"D:\Eigene Dateien\Test\Test 1.txt";
             string targetFile = @"D:\Test Backup Server\Test\Test 1.txt";
 
-            GenerateFileNames(curFile,  BasisDirSource,  BasisDirTarget);
+            GenerateFileNames(curFile, BasisDirSource, BasisDirTarget);
 
 
-            if (! File.Exists(targetFile))
+            if (!File.Exists(targetFile))
             {
                 //targetFile = Path.Combine(targetFolder.FullName, System.IO.Path.GetFileName(curFile));
                 if (!Directory.Exists(@"D:\Test Backup Server\Test"))
                 {
                     Directory.CreateDirectory(@"D:\Test Backup Server\Test");
                 }
-                
+
                 System.IO.File.Copy(curFile, targetFile);
             }
             else
@@ -195,20 +207,20 @@ namespace Backup_Programm
         }
 
 
-        private void CopyFile (FileInfo SourceFile, FileInfo TargetFile)
+        private void CopyFile(FileInfo SourceFile, FileInfo TargetFile)
         {
-            if (!TargetFile.Exists )
+            if (!TargetFile.Exists)
             {
                 if (!TargetFile.Directory.Exists)
                 {
                     TargetFile.Directory.Create();
-                  
+
                 }
                 SourceFile.CopyTo(TargetFile.FullName);
             }
             else
             {
-                if(SourceFile.LastWriteTime > TargetFile.LastWriteTime)
+                if (SourceFile.LastWriteTime > TargetFile.LastWriteTime)
                 {
                     TargetFile.Delete();
                     SourceFile.CopyTo(TargetFile.FullName);
@@ -225,22 +237,37 @@ namespace Backup_Programm
             int lenDirBackup = BasisDirTarget.Length;
 
             string FileName = SourceFillFullPath.Substring(lenDirSource);
-            string TargetFileFullPath = Path.Join(BasisDirTarget,FileName);
+            string TargetFileFullPath = Path.Join(BasisDirTarget, FileName);
 
             return (TargetFileFullPath);
 
         }
 
-        private void btnTests_Click(object sender, EventArgs e)
+        public static void SerializeToXmlFile(object obj, string filename, Encoding encoding)
         {
-            listBox1.Items.Clear();
-            for(int i=0; i<10000; i++)
+            // XmlSerializer für den Typ des Objekts erzeugen
+            XmlSerializer serializer = new XmlSerializer(obj.GetType());
+            // Objekt über ein StreamWriter-Objekt serialisieren
+            using (StreamWriter streamWriter = new StreamWriter(filename, false, encoding))
             {
-                listBox1.Items.Add("Test " + i.ToString());
-                listBox1.Update();
+                serializer.Serialize(streamWriter, obj);
+
             }
         }
-    }
 
+        private void btnTests_Click(object sender, EventArgs e)
+        {
+            // Person-Objekt erzeugen
+            Person person = new Person();
+            person.FirstName = "Zaphod";
+            person.LastName = "Beeblebox";
+            person.BirthDate = new DateTime(1900, 1, 1);
+
+            SerializeToXmlFile(person, @"D:\Serialize.xml", Encoding.Default);
+
+            int a = 1;
+        }
+
+    }
 }
 
