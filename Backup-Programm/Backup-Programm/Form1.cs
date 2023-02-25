@@ -27,13 +27,13 @@ using System.Xml.Serialization;
 namespace Backup_Programm
 {
 
-    [Serializable]
-    public class Person
-    {
-        public string FirstName;
-        public string LastName;
-        public DateTime BirthDate;
-    }
+    //[Serializable]
+    //public class Person
+    //{
+    //    public string FirstName;
+    //    public string LastName;
+    //    public DateTime BirthDate;
+    //}
 
 
     public partial class Form1 : Form
@@ -257,13 +257,21 @@ namespace Backup_Programm
 
         private void btnTests_Click(object sender, EventArgs e)
         {
-            // Person-Objekt erzeugen
+            //// Person-Objekt erzeugen
             Person person = new Person();
             person.FirstName = "Zaphod";
             person.LastName = "Beeblebox";
             person.BirthDate = new DateTime(1900, 1, 1);
 
             SerializeToXmlFile(person, @"D:\Serialize.xml", Encoding.Default);
+
+
+            BackupConfig CfgFile = new BackupConfig();
+            CfgFile.Test1 = "Zeile1";
+            CfgFile.Test2 = "Zeile2";
+            CfgFile.Anzahl = 123;
+            SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+
 
             int a = 1;
         }
