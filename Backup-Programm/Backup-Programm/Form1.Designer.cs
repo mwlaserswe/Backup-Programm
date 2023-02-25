@@ -35,9 +35,9 @@
             this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGetAppDir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnFileCopy = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseDir = new System.Windows.Forms.TextBox();
+            this.btnTests = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,16 +104,6 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // btnFileCopy
-            // 
-            this.btnFileCopy.Location = new System.Drawing.Point(812, 66);
-            this.btnFileCopy.Name = "btnFileCopy";
-            this.btnFileCopy.Size = new System.Drawing.Size(326, 58);
-            this.btnFileCopy.TabIndex = 6;
-            this.btnFileCopy.Text = "File Copy";
-            this.btnFileCopy.UseVisualStyleBackColor = true;
-            this.btnFileCopy.Click += new System.EventHandler(this.btnFileCopy_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -130,14 +120,24 @@
             this.txtBaseDir.Size = new System.Drawing.Size(1258, 47);
             this.txtBaseDir.TabIndex = 1;
             // 
+            // btnTests
+            // 
+            this.btnTests.Location = new System.Drawing.Point(884, 68);
+            this.btnTests.Name = "btnTests";
+            this.btnTests.Size = new System.Drawing.Size(424, 70);
+            this.btnTests.TabIndex = 8;
+            this.btnTests.Text = "Tests";
+            this.btnTests.UseVisualStyleBackColor = true;
+            this.btnTests.Click += new System.EventHandler(this.btnTests_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.btnTests);
             this.Controls.Add(this.txtBaseDir);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnFileCopy);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnGetAppDir);
             this.Controls.Add(this.listBox1);
@@ -163,9 +163,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuFile;
         private System.Windows.Forms.Button btnGetAppDir;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnFileCopy;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBaseDir;
+        private System.Windows.Forms.Button btnTests;
     }
 }
 

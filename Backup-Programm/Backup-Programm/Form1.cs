@@ -43,6 +43,7 @@ namespace Backup_Programm
             // Start with drives if you have to search the entire computer.
             string[] drives = System.Environment.GetLogicalDrives();
 
+            listBox1.Items.Clear();
             DirectoryInfo di = new DirectoryInfo(@"D:\Eigene Dateien\Test");
             WalkDirectoryTree(di);
 
@@ -82,7 +83,7 @@ namespace Backup_Programm
 
             if (files != null)
             {
-                foreach (System.IO.FileInfo fi in files)
+                foreach (System.IO.FileInfo SourceFile in files)
                 {
                     // In this example, we only access the existing FileInfo object. If we
                     // want to open, delete or modify the file, then
@@ -91,7 +92,14 @@ namespace Backup_Programm
 
                     // Console.WriteLine(fi.FullName);
 
-                    listBox1.Items.Add(fi.FullName);
+                    listBox1.Items.Add(SourceFile.FullName);
+                    listBox1.Update();
+                    String TargetFileFullPath = GenerateFileNames (SourceFile.FullName, BasisDirSource, BasisDirTarget);
+
+                    //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
+                    FileInfo TargetFile = new FileInfo(TargetFileFullPath);
+
+                    CopyFile(SourceFile, TargetFile);
                 }
 
                 // Now find all the subdirectories under this directory.
@@ -185,14 +193,52 @@ namespace Backup_Programm
                 }
             }
         }
-        private void GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
+
+
+        private void CopyFile (FileInfo SourceFile, FileInfo TargetFile)
+        {
+            if (!TargetFile.Exists )
+            {
+                if (!TargetFile.Directory.Exists)
+                {
+                    TargetFile.Directory.Create();
+                  
+                }
+                SourceFile.CopyTo(TargetFile.FullName);
+            }
+            else
+            {
+                if(SourceFile.LastWriteTime > TargetFile.LastWriteTime)
+                {
+                    TargetFile.Delete();
+                    SourceFile.CopyTo(TargetFile.FullName);
+                }
+            }
+        }
+
+
+
+
+        private String GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
         {
             int lenDirSource = BasisDirSource.Length;
             int lenDirBackup = BasisDirTarget.Length;
 
             string FileName = SourceFillFullPath.Substring(lenDirSource);
-            string targetFile = Path.Join(BasisDirTarget,FileName);
+            string TargetFileFullPath = Path.Join(BasisDirTarget,FileName);
 
+            return (TargetFileFullPath);
+
+        }
+
+        private void btnTests_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            for(int i=0; i<10000; i++)
+            {
+                listBox1.Items.Add("Test " + i.ToString());
+                listBox1.Update();
+            }
         }
     }
 
