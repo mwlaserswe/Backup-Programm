@@ -29,7 +29,7 @@ namespace Backup_Programm
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
 
         string BasisDirSource = @"D:\Eigene Dateien\";
-        string BasisDirBackup = @"D:\Test Backup Server\";
+        string BasisDirTarget = @"D:\Test Backup Server\";
 
         public Form1()
         {
@@ -159,7 +159,7 @@ namespace Backup_Programm
             string curFile = @"D:\Eigene Dateien\Test\Test 1.txt";
             string targetFile = @"D:\Test Backup Server\Test\Test 1.txt";
 
-            GenerateFileNames(curFile,  BasisDirSource,  BasisDirBackup);
+            GenerateFileNames(curFile,  BasisDirSource,  BasisDirTarget);
 
 
             if (! File.Exists(targetFile))
@@ -185,13 +185,13 @@ namespace Backup_Programm
                 }
             }
         }
-        private void GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirBackup)
+        private void GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
         {
             int lenDirSource = BasisDirSource.Length;
-            int lenDirBackup = BasisDirBackup.Length;
+            int lenDirBackup = BasisDirTarget.Length;
 
             string FileName = SourceFillFullPath.Substring(lenDirSource);
-            string targetFile = Path.Join(BasisDirBackup,FileName);
+            string targetFile = Path.Join(BasisDirTarget,FileName);
 
         }
     }
