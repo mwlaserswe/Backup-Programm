@@ -40,12 +40,23 @@ namespace Backup_Programm
     {
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
 
-        string BasisDirSource = @"D:\Eigene Dateien\";
-        string BasisDirTarget = @"D:\Test Backup Server\";
+        string BasisDirSource = @"C:\Temp\";
+        string BasisDirTarget = @"D:\Temp\";
+        int CurrentEntry = 0;
+        bool SingleStep = false;
+
+
+        BackupConfig CfgFile = new BackupConfig();
 
         public Form1()
         {
             InitializeComponent();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Read configuration
+            CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
+ 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -142,26 +153,60 @@ namespace Backup_Programm
 
         private void Ablauf()
         {
-            FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
-            textBox1.Text = fi.DirectoryName;
+            // Configuration erneut einlesen, damit man die Liste während des Programmlaufs ändern kann
+            CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
 
-            string BackupList = fi.DirectoryName + "\\BackupList.txt";
+            FileInfo BackupList = new FileInfo(Assembly.GetEntryAssembly().Location);
+            textBox1.Text = BackupList.DirectoryName;
+
+            string BackupListFullName = BackupList.DirectoryName + "\\BackupList.txt";
 
             int counter = 0;
 
             // Read the file and display it line by line.  
-            foreach (string line in System.IO.File.ReadLines(BackupList))
+            foreach (string line in System.IO.File.ReadLines(BackupListFullName))
             {
                 if (line != "")
                 {
-                    listBox1.Items.Add("====>    " + line);
 
-                    DirectoryInfo di = new DirectoryInfo(line);
+                    if (SingleStep)
+                    { if (counter == CfgFile.CurrentEntry)
+                        {
+                            listBox1.Items.Add("====>    " + line);
 
-                    WalkDirectoryTree(di);
-                    counter++;
+                            DirectoryInfo BackupListEntry = new DirectoryInfo(line);
 
+                            WalkDirectoryTree(BackupListEntry);
+
+                            CfgFile.CurrentEntry = counter + 1;
+                            SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+
+                            break;
+                        }
+                        counter++;
+
+                     }
+                    else
+                    {
+                        listBox1.Items.Add("====>    " + line);
+
+                        DirectoryInfo BackupListEntry = new DirectoryInfo(line);
+
+                        WalkDirectoryTree(BackupListEntry);
+
+                        CfgFile.CurrentEntry = counter + 1;
+                        SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+                    }
                 }
+            }
+
+            // Wenn "BackupCfg.xml" abgearbeitet wurde, CfgFile.CurrentEntry wieder auf 0 setzen
+            if (counter >= CfgFile.CurrentEntry)
+            {
+                CfgFile.CurrentEntry = 0;
+                SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+                listBox1.Items.Clear();
+                listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
             }
         }
 
@@ -255,26 +300,45 @@ namespace Backup_Programm
             }
         }
 
+        public static object DeserializeFromXmlFile(string filename, Type objectType, Encoding encoding)
+        {
+            // XmlSerializer für den Typ des Objekts erzeugen
+            XmlSerializer serializer = new XmlSerializer(objectType);
+            // Objekt über ein StreamReader-Objekt serialisieren
+            using (StreamReader streamReader = new StreamReader(filename, encoding))
+            {
+                return serializer.Deserialize(streamReader);
+            }
+        }
+ 
         private void btnTests_Click(object sender, EventArgs e)
         {
-            //// Person-Objekt erzeugen
-            Person person = new Person();
-            person.FirstName = "Zaphod";
-            person.LastName = "Beeblebox";
-            person.BirthDate = new DateTime(1900, 1, 1);
+            //////// Person-Objekt erzeugen
+            ////Person person = new Person();
+            ////person.FirstName = "Zaphod";
+            ////person.LastName = "Beeblebox";
+            ////person.BirthDate = new DateTime(1900, 1, 1);
 
-            SerializeToXmlFile(person, @"D:\Serialize.xml", Encoding.Default);
+            ////SerializeToXmlFile(person, @"D:\Serialize.xml", Encoding.Default);
 
 
-            BackupConfig CfgFile = new BackupConfig();
             CfgFile.Test1 = "Zeile1";
             CfgFile.Test2 = "Zeile2";
             CfgFile.Anzahl = 123;
+            CfgFile.BasisDirSource = BasisDirSource;
+            CfgFile.BasisDirTarget = BasisDirTarget;
+
             SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
 
 
-            int a = 1;
+            ////int a = 1;
+
         }
+
+        private void btnTest2_Click(object sender, EventArgs e)
+        {
+            CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
+         }
 
     }
 }

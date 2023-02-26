@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBaseDir = new System.Windows.Forms.TextBox();
             this.btnTests = new System.Windows.Forms.Button();
+            this.btnTest2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,7 @@
             this.btnGetAppDir.Name = "btnGetAppDir";
             this.btnGetAppDir.Size = new System.Drawing.Size(348, 58);
             this.btnGetAppDir.TabIndex = 4;
-            this.btnGetAppDir.Text = "Get App Directory";
+            this.btnGetAppDir.Text = "Start Backup";
             this.btnGetAppDir.UseVisualStyleBackColor = true;
             this.btnGetAppDir.Click += new System.EventHandler(this.btnGetOwnDir_Click);
             // 
@@ -122,19 +123,30 @@
             // 
             // btnTests
             // 
-            this.btnTests.Location = new System.Drawing.Point(884, 68);
+            this.btnTests.Location = new System.Drawing.Point(809, 66);
             this.btnTests.Name = "btnTests";
-            this.btnTests.Size = new System.Drawing.Size(424, 70);
+            this.btnTests.Size = new System.Drawing.Size(179, 70);
             this.btnTests.TabIndex = 8;
-            this.btnTests.Text = "Tests";
+            this.btnTests.Text = "Write Cfg";
             this.btnTests.UseVisualStyleBackColor = true;
             this.btnTests.Click += new System.EventHandler(this.btnTests_Click);
+            // 
+            // btnTest2
+            // 
+            this.btnTest2.Location = new System.Drawing.Point(1031, 67);
+            this.btnTest2.Name = "btnTest2";
+            this.btnTest2.Size = new System.Drawing.Size(160, 68);
+            this.btnTest2.TabIndex = 9;
+            this.btnTest2.Text = "Read Cfg";
+            this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.btnTest2);
             this.Controls.Add(this.btnTests);
             this.Controls.Add(this.txtBaseDir);
             this.Controls.Add(this.label1);
@@ -147,6 +159,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -166,6 +179,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBaseDir;
         private System.Windows.Forms.Button btnTests;
+        private System.Windows.Forms.Button btnTest2;
     }
 }
 
