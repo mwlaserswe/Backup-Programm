@@ -13,5 +13,6 @@ namespace Backup_Programm
         public string BasisDirSource;
         public string BasisDirTarget;
         public int CurrentEntry;
+        public bool SingleStep;
     }
 }

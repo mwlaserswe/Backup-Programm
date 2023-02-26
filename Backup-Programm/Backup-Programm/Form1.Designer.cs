@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTargetBaseDir = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGetAppDir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBaseDir = new System.Windows.Forms.TextBox();
+            this.txtSourceBaseDir = new System.Windows.Forms.TextBox();
             this.btnTests = new System.Windows.Forms.Button();
             this.btnTest2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkSingleStep = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,12 +54,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // txtTargetBaseDir
             // 
-            this.textBox1.Location = new System.Drawing.Point(51, 345);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1258, 47);
-            this.textBox1.TabIndex = 1;
+            this.txtTargetBaseDir.Location = new System.Drawing.Point(51, 345);
+            this.txtTargetBaseDir.Name = "txtTargetBaseDir";
+            this.txtTargetBaseDir.Size = new System.Drawing.Size(1258, 47);
+            this.txtTargetBaseDir.TabIndex = 1;
             // 
             // listBox1
             // 
@@ -110,16 +112,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(51, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(437, 41);
+            this.label1.Size = new System.Drawing.Size(478, 41);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Basisverzeichnis für das Backup:";
+            this.label1.Text = "Source-Verzeichnis für das Backup:";
             // 
-            // txtBaseDir
+            // txtSourceBaseDir
             // 
-            this.txtBaseDir.Location = new System.Drawing.Point(51, 238);
-            this.txtBaseDir.Name = "txtBaseDir";
-            this.txtBaseDir.Size = new System.Drawing.Size(1258, 47);
-            this.txtBaseDir.TabIndex = 1;
+            this.txtSourceBaseDir.Location = new System.Drawing.Point(51, 238);
+            this.txtSourceBaseDir.Name = "txtSourceBaseDir";
+            this.txtSourceBaseDir.Size = new System.Drawing.Size(1258, 47);
+            this.txtSourceBaseDir.TabIndex = 1;
             // 
             // btnTests
             // 
@@ -141,19 +143,41 @@
             this.btnTest2.UseVisualStyleBackColor = true;
             this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(51, 301);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(469, 41);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Target-Verzeichnis für das Backup:";
+            // 
+            // chkSingleStep
+            // 
+            this.chkSingleStep.AutoSize = true;
+            this.chkSingleStep.Location = new System.Drawing.Point(51, 438);
+            this.chkSingleStep.Name = "chkSingleStep";
+            this.chkSingleStep.Size = new System.Drawing.Size(204, 45);
+            this.chkSingleStep.TabIndex = 10;
+            this.chkSingleStep.Text = "Single Step";
+            this.chkSingleStep.UseVisualStyleBackColor = true;
+            this.chkSingleStep.CheckedChanged += new System.EventHandler(this.chkSingleStep_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.chkSingleStep);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnTest2);
             this.Controls.Add(this.btnTests);
-            this.Controls.Add(this.txtBaseDir);
+            this.Controls.Add(this.txtSourceBaseDir);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnGetAppDir);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTargetBaseDir);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -170,16 +194,18 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTargetBaseDir;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuFile;
         private System.Windows.Forms.Button btnGetAppDir;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBaseDir;
+        private System.Windows.Forms.TextBox txtSourceBaseDir;
         private System.Windows.Forms.Button btnTests;
         private System.Windows.Forms.Button btnTest2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkSingleStep;
     }
 }
 
