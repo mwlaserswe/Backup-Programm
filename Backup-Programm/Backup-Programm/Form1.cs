@@ -102,21 +102,21 @@ namespace Backup_Programm
         private void button1_Click(object sender, EventArgs e)
         {
 
-            // Start with drives if you have to search the entire computer.
-            string[] drives = System.Environment.GetLogicalDrives();
+            ////// Start with drives if you have to search the entire computer.
+            ////string[] drives = System.Environment.GetLogicalDrives();
 
-            listBox1.Items.Clear();
-            DirectoryInfo di = new DirectoryInfo(@"D:\Eigene Dateien\Test");
-            WalkDirectoryTree(di);
+            ////listBox1.Items.Clear();
+            ////DirectoryInfo di = new DirectoryInfo(@"D:\Eigene Dateien\Test");
+            ////WalkDirectoryTree(di);
 
-            // Write out all the files that could not be processed.
+            ////// Write out all the files that could not be processed.
 
-            // Console.WriteLine("Files with restricted access:");
+            ////// Console.WriteLine("Files with restricted access:");
 
-            foreach (string s in log)
-            {
-                // Console.WriteLine(s);
-            }
+            ////foreach (string s in log)
+            ////{
+            ////    // Console.WriteLine(s);
+            ////}
         }
         private void WalkDirectoryTree(System.IO.DirectoryInfo root)
         {
@@ -155,6 +155,7 @@ namespace Backup_Programm
                     // Console.WriteLine(fi.FullName);
 
                     listBox1.Items.Add(SourceFile.FullName);
+                    listBox1.SelectedIndex = listBox1.Items.Count - 1;
                     listBox1.Update();
                     String TargetFileFullPath = GenerateFileNames(SourceFile.FullName, BasisDirSource, BasisDirTarget);
 
@@ -209,6 +210,7 @@ namespace Backup_Programm
                     { if (counter == CfgFile.CurrentEntry)
                         {
                             listBox1.Items.Add("====>    " + line);
+                            listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
                             DirectoryInfo BackupListEntry = new DirectoryInfo(line);
 
@@ -225,6 +227,7 @@ namespace Backup_Programm
                     else
                     {
                         listBox1.Items.Add("====>    " + line);
+                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
                         DirectoryInfo BackupListEntry = new DirectoryInfo(line);
 

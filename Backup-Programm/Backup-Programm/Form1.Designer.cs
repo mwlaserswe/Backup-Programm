@@ -34,7 +34,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSelectSourcePath = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGetAppDir = new System.Windows.Forms.Button();
+            this.btnStartBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSourceBaseDir = new System.Windows.Forms.TextBox();
@@ -50,9 +50,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(84, 66);
+            this.button1.Location = new System.Drawing.Point(948, 92);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 58);
+            this.button1.Size = new System.Drawing.Size(183, 43);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -100,15 +100,15 @@
             this.toolStripSelectSourcePath.Size = new System.Drawing.Size(428, 54);
             this.toolStripSelectSourcePath.Text = "Select Source Path";
             // 
-            // btnGetAppDir
+            // btnStartBackup
             // 
-            this.btnGetAppDir.Location = new System.Drawing.Point(396, 66);
-            this.btnGetAppDir.Name = "btnGetAppDir";
-            this.btnGetAppDir.Size = new System.Drawing.Size(348, 58);
-            this.btnGetAppDir.TabIndex = 4;
-            this.btnGetAppDir.Text = "Start Backup";
-            this.btnGetAppDir.UseVisualStyleBackColor = true;
-            this.btnGetAppDir.Click += new System.EventHandler(this.btnGetOwnDir_Click);
+            this.btnStartBackup.Location = new System.Drawing.Point(61, 77);
+            this.btnStartBackup.Name = "btnStartBackup";
+            this.btnStartBackup.Size = new System.Drawing.Size(348, 58);
+            this.btnStartBackup.TabIndex = 4;
+            this.btnStartBackup.Text = "Start Backup";
+            this.btnStartBackup.UseVisualStyleBackColor = true;
+            this.btnStartBackup.Click += new System.EventHandler(this.btnGetOwnDir_Click);
             // 
             // button2
             // 
@@ -137,9 +137,9 @@
             // 
             // btnTests
             // 
-            this.btnTests.Location = new System.Drawing.Point(809, 66);
+            this.btnTests.Location = new System.Drawing.Point(1148, 120);
             this.btnTests.Name = "btnTests";
-            this.btnTests.Size = new System.Drawing.Size(179, 70);
+            this.btnTests.Size = new System.Drawing.Size(155, 51);
             this.btnTests.TabIndex = 8;
             this.btnTests.Text = "Write Cfg";
             this.btnTests.UseVisualStyleBackColor = true;
@@ -147,9 +147,9 @@
             // 
             // btnTest2
             // 
-            this.btnTest2.Location = new System.Drawing.Point(1031, 67);
+            this.btnTest2.Location = new System.Drawing.Point(1148, 66);
             this.btnTest2.Name = "btnTest2";
-            this.btnTest2.Size = new System.Drawing.Size(160, 68);
+            this.btnTest2.Size = new System.Drawing.Size(149, 41);
             this.btnTest2.TabIndex = 9;
             this.btnTest2.Text = "Read Cfg";
             this.btnTest2.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@
             this.Controls.Add(this.txtSourceBaseDir);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnGetAppDir);
+            this.Controls.Add(this.btnStartBackup);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtTargetBaseDir);
             this.Controls.Add(this.button1);
@@ -232,7 +232,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuFile;
-        private System.Windows.Forms.Button btnGetAppDir;
+        private System.Windows.Forms.Button btnStartBackup;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSourceBaseDir;
