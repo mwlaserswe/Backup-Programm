@@ -75,6 +75,29 @@ namespace Backup_Programm
             SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
 
         }
+        private void btnSelectSourcePath_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                BasisDirSource = folderBrowserDialog1.SelectedPath;
+                CfgFile.BasisDirSource = BasisDirSource;
+                SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+                txtSourceBaseDir.Text = BasisDirSource;
+            }
+        }
+
+        private void btnSelectTargetPath_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                BasisDirTarget= folderBrowserDialog1.SelectedPath;
+                CfgFile.BasisDirTarget = BasisDirTarget;
+                SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+                txtTargetBaseDir.Text = BasisDirTarget;
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -352,7 +375,6 @@ namespace Backup_Programm
         {
             CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
          }
-
     }
 }
 

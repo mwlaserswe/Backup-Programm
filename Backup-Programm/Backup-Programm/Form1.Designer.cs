@@ -33,6 +33,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSelectSourcePath = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGetAppDir = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,9 @@
             this.btnTest2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.chkSingleStep = new System.Windows.Forms.CheckBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSelectSourcePath = new System.Windows.Forms.Button();
+            this.btnSelectTargetPath = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +62,7 @@
             // 
             this.txtTargetBaseDir.Location = new System.Drawing.Point(51, 345);
             this.txtTargetBaseDir.Name = "txtTargetBaseDir";
-            this.txtTargetBaseDir.Size = new System.Drawing.Size(1258, 47);
+            this.txtTargetBaseDir.Size = new System.Drawing.Size(1140, 47);
             this.txtTargetBaseDir.TabIndex = 1;
             // 
             // listBox1
@@ -84,9 +88,17 @@
             // 
             // toolStripMenuFile
             // 
+            this.toolStripMenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSelectSourcePath});
             this.toolStripMenuFile.Name = "toolStripMenuFile";
             this.toolStripMenuFile.Size = new System.Drawing.Size(87, 45);
             this.toolStripMenuFile.Text = "File";
+            // 
+            // toolStripSelectSourcePath
+            // 
+            this.toolStripSelectSourcePath.Name = "toolStripSelectSourcePath";
+            this.toolStripSelectSourcePath.Size = new System.Drawing.Size(428, 54);
+            this.toolStripSelectSourcePath.Text = "Select Source Path";
             // 
             // btnGetAppDir
             // 
@@ -120,7 +132,7 @@
             // 
             this.txtSourceBaseDir.Location = new System.Drawing.Point(51, 238);
             this.txtSourceBaseDir.Name = "txtSourceBaseDir";
-            this.txtSourceBaseDir.Size = new System.Drawing.Size(1258, 47);
+            this.txtSourceBaseDir.Size = new System.Drawing.Size(1142, 47);
             this.txtSourceBaseDir.TabIndex = 1;
             // 
             // btnTests
@@ -163,11 +175,33 @@
             this.chkSingleStep.UseVisualStyleBackColor = true;
             this.chkSingleStep.CheckedChanged += new System.EventHandler(this.chkSingleStep_CheckedChanged);
             // 
+            // btnSelectSourcePath
+            // 
+            this.btnSelectSourcePath.Location = new System.Drawing.Point(1217, 238);
+            this.btnSelectSourcePath.Name = "btnSelectSourcePath";
+            this.btnSelectSourcePath.Size = new System.Drawing.Size(80, 47);
+            this.btnSelectSourcePath.TabIndex = 11;
+            this.btnSelectSourcePath.Text = ". . .";
+            this.btnSelectSourcePath.UseVisualStyleBackColor = true;
+            this.btnSelectSourcePath.Click += new System.EventHandler(this.btnSelectSourcePath_Click);
+            // 
+            // btnSelectTargetPath
+            // 
+            this.btnSelectTargetPath.Location = new System.Drawing.Point(1217, 345);
+            this.btnSelectTargetPath.Name = "btnSelectTargetPath";
+            this.btnSelectTargetPath.Size = new System.Drawing.Size(80, 47);
+            this.btnSelectTargetPath.TabIndex = 11;
+            this.btnSelectTargetPath.Text = ". . .";
+            this.btnSelectTargetPath.UseVisualStyleBackColor = true;
+            this.btnSelectTargetPath.Click += new System.EventHandler(this.btnSelectTargetPath_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.btnSelectTargetPath);
+            this.Controls.Add(this.btnSelectSourcePath);
             this.Controls.Add(this.chkSingleStep);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnTest2);
@@ -206,6 +240,10 @@
         private System.Windows.Forms.Button btnTest2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkSingleStep;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSelectSourcePath;
+        private System.Windows.Forms.Button btnSelectSourcePath;
+        private System.Windows.Forms.Button btnSelectTargetPath;
     }
 }
 
