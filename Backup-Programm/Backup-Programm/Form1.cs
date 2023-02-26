@@ -56,13 +56,29 @@ namespace Backup_Programm
         {
             // Read configuration
             CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
- 
+
+            BasisDirSource = CfgFile.BasisDirSource;
+            BasisDirTarget = CfgFile.BasisDirTarget;
+
+            txtSourceBaseDir.Text = BasisDirSource;
+            txtTargetBaseDir.Text = BasisDirTarget;
+
+            SingleStep = CfgFile.SingleStep;
+            chkSingleStep.Checked = SingleStep;
+
+        }
+
+        private void chkSingleStep_CheckedChanged(object sender, EventArgs e)
+        {
+            SingleStep = chkSingleStep.Checked;
+            CfgFile.SingleStep = SingleStep;
+            SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            textBox1.Text = "Hallo World";
             // Start with drives if you have to search the entire computer.
             string[] drives = System.Environment.GetLogicalDrives();
 
@@ -143,8 +159,6 @@ namespace Backup_Programm
 
         private void btnGetOwnDir_Click(object sender, EventArgs e)
         {
-            FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
-            textBox1.Text = fi.DirectoryName;
             Ablauf();
         }
 
@@ -157,8 +171,7 @@ namespace Backup_Programm
             CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
 
             FileInfo BackupList = new FileInfo(Assembly.GetEntryAssembly().Location);
-            textBox1.Text = BackupList.DirectoryName;
-
+ 
             string BackupListFullName = BackupList.DirectoryName + "\\BackupList.txt";
 
             int counter = 0;
