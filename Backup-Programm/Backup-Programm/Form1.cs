@@ -44,6 +44,7 @@ namespace Backup_Programm
         string BasisDirTarget = @"D:\Temp\";
         int CurrentEntry = 0;
         bool SingleStep = false;
+        int FileCounter = 0;
 
 
         BackupConfig CfgFile = new BackupConfig();
@@ -77,6 +78,7 @@ namespace Backup_Programm
         }
         private void btnSelectSourcePath_Click(object sender, EventArgs e)
         {
+            folderBrowserDialog1.SelectedPath = BasisDirSource;
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -89,6 +91,7 @@ namespace Backup_Programm
 
         private void btnSelectTargetPath_Click(object sender, EventArgs e)
         {
+            folderBrowserDialog1.SelectedPath = BasisDirTarget;
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -162,6 +165,8 @@ namespace Backup_Programm
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
                     FileInfo TargetFile = new FileInfo(TargetFileFullPath);
 
+                    FileCounter++;
+                    lblFileCounter.Text = FileCounter.ToString();
                     CopyFile(SourceFile, TargetFile);
                 }
 
@@ -200,8 +205,8 @@ namespace Backup_Programm
 
             int counter = 0;
 
-            // Read the file and display it line by line.  
-            foreach (string line in System.IO.File.ReadLines(BackupListFullName))
+            // Read the Backup listc ine by line.  
+            foreach (string line in CfgFile.BackupList)
             {
                 if (line != "")
                 {
@@ -212,8 +217,8 @@ namespace Backup_Programm
                             listBox1.Items.Add("====>    " + line);
                             listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
+                            FileCounter = 0;
                             DirectoryInfo BackupListEntry = new DirectoryInfo(line);
-
                             WalkDirectoryTree(BackupListEntry);
 
                             CfgFile.CurrentEntry = counter + 1;
@@ -229,8 +234,8 @@ namespace Backup_Programm
                         listBox1.Items.Add("====>    " + line);
                         listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
+                        FileCounter = 0;
                         DirectoryInfo BackupListEntry = new DirectoryInfo(line);
-
                         WalkDirectoryTree(BackupListEntry);
 
                         CfgFile.CurrentEntry = counter + 1;
@@ -367,6 +372,11 @@ namespace Backup_Programm
             CfgFile.BasisDirSource = BasisDirSource;
             CfgFile.BasisDirTarget = BasisDirTarget;
 
+            CfgFile.BackupList.Add(BasisDirSource); // adding elements using add() method
+            CfgFile.BackupList.Add(BasisDirTarget);
+            CfgFile.BackupList.Add("5");
+            CfgFile.BackupList.Add("7");
+
             SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
 
 
@@ -377,6 +387,11 @@ namespace Backup_Programm
         private void btnTest2_Click(object sender, EventArgs e)
         {
             CfgFile = (BackupConfig)DeserializeFromXmlFile(@"D:\BackupCfg.xml", CfgFile.GetType(), Encoding.Default);
+
+            foreach (string line in CfgFile.BackupList)
+            {
+                int a = 1;
+            }
          }
     }
 }

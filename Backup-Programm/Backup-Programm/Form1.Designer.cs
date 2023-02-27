@@ -45,6 +45,9 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnSelectSourcePath = new System.Windows.Forms.Button();
             this.btnSelectTargetPath = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFileCounter = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,11 +198,41 @@
             this.btnSelectTargetPath.UseVisualStyleBackColor = true;
             this.btnSelectTargetPath.Click += new System.EventHandler(this.btnSelectTargetPath_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(51, 534);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 41);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "File counter:";
+            // 
+            // lblFileCounter
+            // 
+            this.lblFileCounter.AutoSize = true;
+            this.lblFileCounter.Location = new System.Drawing.Point(237, 534);
+            this.lblFileCounter.Name = "lblFileCounter";
+            this.lblFileCounter.Size = new System.Drawing.Size(42, 41);
+            this.lblFileCounter.TabIndex = 13;
+            this.lblFileCounter.Text = "--";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(479, 77);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(314, 58);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.lblFileCounter);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSelectTargetPath);
             this.Controls.Add(this.btnSelectSourcePath);
             this.Controls.Add(this.chkSingleStep);
@@ -244,6 +277,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripSelectSourcePath;
         private System.Windows.Forms.Button btnSelectSourcePath;
         private System.Windows.Forms.Button btnSelectTargetPath;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFileCounter;
+        private System.Windows.Forms.Button button3;
     }
 }
 
