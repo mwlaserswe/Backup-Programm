@@ -21,6 +21,7 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 
 using System.Xml.Serialization;
 
@@ -40,11 +41,14 @@ namespace Backup_Programm
     {
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
 
+        static PerformanceCounter cpuCounter; // globaler PerformanceCounter 
+
         string BasisDirSource = @"C:\Temp\";
         string BasisDirTarget = @"D:\Temp\";
         int CurrentEntry = 0;
         bool SingleStep = false;
         int FileCounter = 0;
+        int FilesChanged = 0;
 
 
         BackupConfig CfgFile = new BackupConfig();
@@ -66,6 +70,12 @@ namespace Backup_Programm
 
             SingleStep = CfgFile.SingleStep;
             chkSingleStep.Checked = SingleStep;
+
+            cpuCounter = new PerformanceCounter();
+            cpuCounter.CategoryName = "Processor";
+            cpuCounter.CounterName = "% Processor Time";
+            cpuCounter.InstanceName = "_Total"; // "_Total" entspricht der gesamten CPU Auslastung, Bei Computern mit mehr als 1 logischem Prozessor: "0" dem ersten Core, "1" dem zweiten...
+
 
         }
 
@@ -204,15 +214,16 @@ namespace Backup_Programm
             string BackupListFullName = BackupList.DirectoryName + "\\BackupList.txt";
 
             int counter = 0;
+            listBox1.Items.Clear();
+            //listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
 
             // Read the Backup listc ine by line.  
             foreach (string line in CfgFile.BackupList)
             {
                 if (line != "")
-                {
+                
 
-                    if (SingleStep)
-                    { if (counter == CfgFile.CurrentEntry)
+                    { if (counter >= CfgFile.CurrentEntry)
                         {
                             listBox1.Items.Add("====>    " + line);
                             listBox1.SelectedIndex = listBox1.Items.Count - 1;
@@ -224,23 +235,12 @@ namespace Backup_Programm
                             CfgFile.CurrentEntry = counter + 1;
                             SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
 
-                            break;
+                            if (SingleStep)
+                                break;
+
                         }
                         counter++;
 
-                     }
-                    else
-                    {
-                        listBox1.Items.Add("====>    " + line);
-                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
-
-                        FileCounter = 0;
-                        DirectoryInfo BackupListEntry = new DirectoryInfo(line);
-                        WalkDirectoryTree(BackupListEntry);
-
-                        CfgFile.CurrentEntry = counter + 1;
-                        SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
-                    }
                 }
             }
 
@@ -249,8 +249,8 @@ namespace Backup_Programm
             {
                 CfgFile.CurrentEntry = 0;
                 SerializeToXmlFile(CfgFile, @"D:\BackupCfg.xml", Encoding.Default);
-                listBox1.Items.Clear();
-                listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
+                //listBox1.Items.Clear();
+                //listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
             }
         }
 
@@ -305,15 +305,22 @@ namespace Backup_Programm
                     TargetFile.Directory.Create();
 
                 }
+                FilesChanged++;
+                lblFilesChanged.Text = FilesChanged.ToString();
+
                 SourceFile.CopyTo(TargetFile.FullName);
             }
             else
             {
                 if (SourceFile.LastWriteTime > TargetFile.LastWriteTime)
                 {
+                    FilesChanged++;
+                    lblFilesChanged.Text = FilesChanged.ToString();
+
                     TargetFile.Delete();
                     SourceFile.CopyTo(TargetFile.FullName);
                 }
+ 
             }
         }
 
@@ -393,6 +400,27 @@ namespace Backup_Programm
                 int a = 1;
             }
          }
+
+        private void Ablauftimer_Tick(object sender, EventArgs e)
+        {   
+            float CpuUsage = cpuCounter.NextValue();
+            lblCpuUsage.Text = CpuUsage.ToString();
+
+            if (chkAutomatic.Checked)
+            {
+                Ablauf();
+
+            }
+        }
+
+        private void chkAutomatic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAutomatic.Checked)
+            {
+                chkSingleStep.Checked = true;
+            }
+
+        }
     }
 }
 

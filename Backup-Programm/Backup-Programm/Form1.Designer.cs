@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.txtTargetBaseDir = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -48,6 +49,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblFileCounter = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.Ablauftimer = new System.Windows.Forms.Timer(this.components);
+            this.chkAutomatic = new System.Windows.Forms.CheckBox();
+            this.lblCpuUsage = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblFilesChanged = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,14 +210,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(51, 534);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 41);
+            this.label3.Size = new System.Drawing.Size(318, 41);
             this.label3.TabIndex = 12;
-            this.label3.Text = "File counter:";
+            this.label3.Text = "No of files in directory:";
             // 
             // lblFileCounter
             // 
             this.lblFileCounter.AutoSize = true;
-            this.lblFileCounter.Location = new System.Drawing.Point(237, 534);
+            this.lblFileCounter.Location = new System.Drawing.Point(375, 534);
             this.lblFileCounter.Name = "lblFileCounter";
             this.lblFileCounter.Size = new System.Drawing.Size(42, 41);
             this.lblFileCounter.TabIndex = 13;
@@ -225,11 +232,69 @@
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // Ablauftimer
+            // 
+            this.Ablauftimer.Enabled = true;
+            this.Ablauftimer.Interval = 10000;
+            this.Ablauftimer.Tick += new System.EventHandler(this.Ablauftimer_Tick);
+            // 
+            // chkAutomatic
+            // 
+            this.chkAutomatic.AutoSize = true;
+            this.chkAutomatic.Location = new System.Drawing.Point(323, 438);
+            this.chkAutomatic.Name = "chkAutomatic";
+            this.chkAutomatic.Size = new System.Drawing.Size(341, 45);
+            this.chkAutomatic.TabIndex = 15;
+            this.chkAutomatic.Text = "Automatischer Ablauf";
+            this.chkAutomatic.UseVisualStyleBackColor = true;
+            this.chkAutomatic.CheckedChanged += new System.EventHandler(this.chkAutomatic_CheckedChanged);
+            // 
+            // lblCpuUsage
+            // 
+            this.lblCpuUsage.AutoSize = true;
+            this.lblCpuUsage.Location = new System.Drawing.Point(1254, 534);
+            this.lblCpuUsage.Name = "lblCpuUsage";
+            this.lblCpuUsage.Size = new System.Drawing.Size(42, 41);
+            this.lblCpuUsage.TabIndex = 13;
+            this.lblCpuUsage.Text = "--";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1068, 534);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(173, 41);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "CPU Usage:";
+            // 
+            // lblFilesChanged
+            // 
+            this.lblFilesChanged.AutoSize = true;
+            this.lblFilesChanged.Location = new System.Drawing.Point(791, 534);
+            this.lblFilesChanged.Name = "lblFilesChanged";
+            this.lblFilesChanged.Size = new System.Drawing.Size(42, 41);
+            this.lblFilesChanged.TabIndex = 13;
+            this.lblFilesChanged.Text = "--";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(502, 534);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(283, 41);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "No of files changed:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblFilesChanged);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCpuUsage);
+            this.Controls.Add(this.chkAutomatic);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.lblFileCounter);
             this.Controls.Add(this.label3);
@@ -280,6 +345,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblFileCounter;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer Ablauftimer;
+        private System.Windows.Forms.CheckBox chkAutomatic;
+        private System.Windows.Forms.Label lblCpuUsage;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFilesChanged;
+        private System.Windows.Forms.Label label6;
     }
 }
 
