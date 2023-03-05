@@ -64,6 +64,12 @@
             this.chkDisplayAllFiles = new System.Windows.Forms.CheckBox();
             this.chkDisplayChangedFiles = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.DiplayTimer = new System.Windows.Forms.Timer(this.components);
+            this.txtTime = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnSetTime = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,7 +250,6 @@
             // 
             // Ablauftimer
             // 
-            this.Ablauftimer.Enabled = true;
             this.Ablauftimer.Interval = 10000;
             this.Ablauftimer.Tick += new System.EventHandler(this.Ablauftimer_Tick);
             // 
@@ -365,11 +370,67 @@
             this.checkBox4.Text = "checkBox4";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(1096, 487);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(42, 41);
+            this.lblTime.TabIndex = 13;
+            this.lblTime.Text = "--";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(714, 486);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(376, 41);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Zeit bis zum nächsten Lauf:";
+            // 
+            // DiplayTimer
+            // 
+            this.DiplayTimer.Enabled = true;
+            this.DiplayTimer.Tick += new System.EventHandler(this.DiplayTimer_Tick);
+            // 
+            // txtTime
+            // 
+            this.txtTime.Location = new System.Drawing.Point(999, 203);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(194, 47);
+            this.txtTime.TabIndex = 1;
+            this.txtTime.Text = "10";
+            this.txtTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(791, 206);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(189, 41);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Wartezeit [s]:";
+            // 
+            // btnSetTime
+            // 
+            this.btnSetTime.Location = new System.Drawing.Point(1217, 201);
+            this.btnSetTime.Name = "btnSetTime";
+            this.btnSetTime.Size = new System.Drawing.Size(79, 51);
+            this.btnSetTime.TabIndex = 19;
+            this.btnSetTime.Text = "OK";
+            this.btnSetTime.UseVisualStyleBackColor = true;
+            this.btnSetTime.Click += new System.EventHandler(this.btnSetTime_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.btnSetTime);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtTime);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.chkDisplayChangedFiles);
             this.Controls.Add(this.chkDisplayAllFiles);
@@ -443,6 +504,12 @@
         private System.Windows.Forms.CheckBox chkDisplayAllFiles;
         private System.Windows.Forms.CheckBox chkDisplayChangedFiles;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Timer DiplayTimer;
+        private System.Windows.Forms.TextBox txtTime;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnSetTime;
     }
 }
 

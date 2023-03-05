@@ -8,7 +8,7 @@
 //  Backup: z.B. von D:\Eigene Dateien\Test\Text Folder 1      --->   D:\Test Backup Server\Test\Text Folder 1
 //  BasisDirSource: D:\Eigene Dateien\
 //  BasisDirBackup: D:\Test Backup Server\
-//  Git Master Passwort: Swcud7ZgG
+//  Swcud7ZgG
 
 using System;
 using System.Collections.Generic;
@@ -36,17 +36,21 @@ namespace Backup_Programm
 
         string BasisDirSource = @"C:\Temp\";
         string BasisDirTarget = @"D:\Temp\";
-        int CurrentEntry = 0;
+        int DisplaySeconds = 0;
         bool SingleStep = false;
+        bool AutoLoop = false;
         bool AutoStart = false;
         bool FlagListAllFiles = false;
         bool FlagListChangedFiles = false;
+        int WaitingTime = 0;
 
 
         int FileCounter = 0;
         int FilesChanged = 0;
         string BackupTask = @"D:\BackupCfg.xml";
 
+        int CntMeanValue = 0;
+        float CpuUsage = 0;
 
         BackupConfig CfgFile = new BackupConfig();
 
@@ -68,6 +72,10 @@ namespace Backup_Programm
                 txtSourceBaseDir.Text = BasisDirSource;
                 txtTargetBaseDir.Text = BasisDirTarget;
 
+                WaitingTime = CfgFile.WaitingTime;
+                txtTime.Text = WaitingTime.ToString();
+                Ablauftimer.Interval = WaitingTime * 1000;
+
                 SingleStep = CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
@@ -77,7 +85,14 @@ namespace Backup_Programm
                 FlagListAllFiles = CfgFile.Flags.FlagDisplayAllFiles;
                 chkDisplayAllFiles.Checked = FlagListAllFiles;
 
+                AutoLoop = CfgFile.Flags.FlagAutoLoop;
+                chkAutomatic.Checked = FlagListAllFiles;
 
+                if (AutoStart)
+                {
+                    AutoLoop = true;
+                    chkAutomatic.Checked = AutoLoop;
+                }
 
                 btnStartBackup.Enabled = true;
                 this.Text = BackupTask;
@@ -134,6 +149,8 @@ namespace Backup_Programm
         {
             System.IO.FileInfo[] files = null;
             System.IO.DirectoryInfo[] subDirs = null;
+
+            Application.DoEvents();
 
             // First, process all the files directly under this folder
             try
@@ -208,6 +225,7 @@ namespace Backup_Programm
             FilesChanged = 0;
             lblFilesChanged.Text = FilesChanged.ToString();
             lblFilesChanged.Update();
+
 
             //====================================================================
             Ablauf();
@@ -450,23 +468,29 @@ namespace Backup_Programm
 
         private void Ablauftimer_Tick(object sender, EventArgs e)
         {   
-            float CpuUsage = cpuCounter.NextValue();
-            lblCpuUsage.Text = CpuUsage.ToString();
-
+ 
             if (chkAutomatic.Checked)
             {
+                Ablauftimer.Enabled = false;
+
+                btnStartBackup.Text = "...Running...";
+                btnStartBackup.Update();
+
+                FilesChanged = 0;
+                lblFilesChanged.Text = FilesChanged.ToString();
+                lblFilesChanged.Update();
+
+
+                //====================================================================
                 Ablauf();
+                //====================================================================
+
+                btnStartBackup.Text = "Start Backup";
+                btnStartBackup.Update();
+
+                Ablauftimer.Enabled = true;
 
             }
-        }
-
-        private void chkAutomatic_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkAutomatic.Checked)
-            {
-                chkSingleStep.Checked = true;
-            }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -512,6 +536,13 @@ namespace Backup_Programm
          
 
         }
+        private void chkAutomatic_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoLoop = chkAutomatic.Checked;
+            CfgFile.Flags.FlagAutoLoop = AutoLoop;
+            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Ablauftimer.Enabled = AutoLoop;
+        }
 
         private void chkAutostart_CheckedChanged(object sender, EventArgs e)
         {
@@ -532,6 +563,53 @@ namespace Backup_Programm
             FlagListChangedFiles = chkDisplayChangedFiles.Checked;
             CfgFile.Flags.FlagDisplayChangedFiles = FlagListChangedFiles;
             SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+        }
+
+        private void DiplayTimer_Tick(object sender, EventArgs e)
+        {
+
+            
+
+
+            CpuUsage = CpuUsage + cpuCounter.NextValue();
+            
+            if (CntMeanValue >= 10)
+            {
+                lblCpuUsage.Text = (CpuUsage / 10).ToString("N0") + " %";
+
+                CpuUsage = 0;
+                CntMeanValue = 0;
+            }
+
+            CntMeanValue++;
+
+
+
+
+
+            if (Ablauftimer.Enabled)
+            {
+                DisplaySeconds++;
+                string DisplayString = ((Ablauftimer.Interval - DisplaySeconds * 100) / 1000).ToString();
+                lblTime.Text = DisplayString;
+                lblTime.Update();
+
+
+            }
+            else
+            {
+                DisplaySeconds = 0;
+            }
+
+       }
+
+        private void btnSetTime_Click(object sender, EventArgs e)
+        {
+            WaitingTime = Convert.ToInt32(txtTime.Text);
+            CfgFile.WaitingTime = WaitingTime;
+            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+
+            Ablauftimer.Interval = WaitingTime * 1000;
         }
     }
 }
