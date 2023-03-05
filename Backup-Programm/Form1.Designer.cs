@@ -60,6 +60,10 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.chkAutostart = new System.Windows.Forms.CheckBox();
+            this.chkDisplayAllFiles = new System.Windows.Forms.CheckBox();
+            this.chkDisplayChangedFiles = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +79,7 @@
             // 
             // txtTargetBaseDir
             // 
-            this.txtTargetBaseDir.Location = new System.Drawing.Point(51, 345);
+            this.txtTargetBaseDir.Location = new System.Drawing.Point(51, 419);
             this.txtTargetBaseDir.Name = "txtTargetBaseDir";
             this.txtTargetBaseDir.Size = new System.Drawing.Size(1140, 47);
             this.txtTargetBaseDir.TabIndex = 1;
@@ -147,7 +151,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 194);
+            this.label1.Location = new System.Drawing.Point(51, 270);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(478, 41);
             this.label1.TabIndex = 7;
@@ -155,7 +159,7 @@
             // 
             // txtSourceBaseDir
             // 
-            this.txtSourceBaseDir.Location = new System.Drawing.Point(51, 238);
+            this.txtSourceBaseDir.Location = new System.Drawing.Point(51, 314);
             this.txtSourceBaseDir.Name = "txtSourceBaseDir";
             this.txtSourceBaseDir.Size = new System.Drawing.Size(1142, 47);
             this.txtSourceBaseDir.TabIndex = 1;
@@ -183,7 +187,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 301);
+            this.label2.Location = new System.Drawing.Point(51, 375);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(469, 41);
             this.label2.TabIndex = 7;
@@ -192,7 +196,7 @@
             // chkSingleStep
             // 
             this.chkSingleStep.AutoSize = true;
-            this.chkSingleStep.Location = new System.Drawing.Point(51, 438);
+            this.chkSingleStep.Location = new System.Drawing.Point(51, 486);
             this.chkSingleStep.Name = "chkSingleStep";
             this.chkSingleStep.Size = new System.Drawing.Size(204, 45);
             this.chkSingleStep.TabIndex = 10;
@@ -202,7 +206,7 @@
             // 
             // btnSelectSourcePath
             // 
-            this.btnSelectSourcePath.Location = new System.Drawing.Point(1217, 238);
+            this.btnSelectSourcePath.Location = new System.Drawing.Point(1217, 314);
             this.btnSelectSourcePath.Name = "btnSelectSourcePath";
             this.btnSelectSourcePath.Size = new System.Drawing.Size(80, 47);
             this.btnSelectSourcePath.TabIndex = 11;
@@ -212,7 +216,7 @@
             // 
             // btnSelectTargetPath
             // 
-            this.btnSelectTargetPath.Location = new System.Drawing.Point(1217, 345);
+            this.btnSelectTargetPath.Location = new System.Drawing.Point(1217, 419);
             this.btnSelectTargetPath.Name = "btnSelectTargetPath";
             this.btnSelectTargetPath.Size = new System.Drawing.Size(80, 47);
             this.btnSelectTargetPath.TabIndex = 11;
@@ -247,7 +251,7 @@
             // chkAutomatic
             // 
             this.chkAutomatic.AutoSize = true;
-            this.chkAutomatic.Location = new System.Drawing.Point(323, 438);
+            this.chkAutomatic.Location = new System.Drawing.Point(323, 486);
             this.chkAutomatic.Name = "chkAutomatic";
             this.chkAutomatic.Size = new System.Drawing.Size(341, 45);
             this.chkAutomatic.TabIndex = 15;
@@ -318,11 +322,58 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // chkAutostart
+            // 
+            this.chkAutostart.AutoSize = true;
+            this.chkAutostart.Location = new System.Drawing.Point(484, 52);
+            this.chkAutostart.Name = "chkAutostart";
+            this.chkAutostart.Size = new System.Drawing.Size(178, 45);
+            this.chkAutostart.TabIndex = 16;
+            this.chkAutostart.Text = "Autostart";
+            this.chkAutostart.UseVisualStyleBackColor = true;
+            this.chkAutostart.CheckedChanged += new System.EventHandler(this.chkAutostart_CheckedChanged);
+            // 
+            // chkDisplayAllFiles
+            // 
+            this.chkDisplayAllFiles.AutoSize = true;
+            this.chkDisplayAllFiles.Location = new System.Drawing.Point(484, 103);
+            this.chkDisplayAllFiles.Name = "chkDisplayAllFiles";
+            this.chkDisplayAllFiles.Size = new System.Drawing.Size(242, 45);
+            this.chkDisplayAllFiles.TabIndex = 17;
+            this.chkDisplayAllFiles.Text = "Dispay all files";
+            this.chkDisplayAllFiles.UseVisualStyleBackColor = true;
+            this.chkDisplayAllFiles.CheckedChanged += new System.EventHandler(this.chkDisplayAllFiles_CheckedChanged);
+            // 
+            // chkDisplayChangedFiles
+            // 
+            this.chkDisplayChangedFiles.AutoSize = true;
+            this.chkDisplayChangedFiles.Location = new System.Drawing.Point(484, 154);
+            this.chkDisplayChangedFiles.Name = "chkDisplayChangedFiles";
+            this.chkDisplayChangedFiles.Size = new System.Drawing.Size(335, 45);
+            this.chkDisplayChangedFiles.TabIndex = 18;
+            this.chkDisplayChangedFiles.Text = "Display changed files";
+            this.chkDisplayChangedFiles.UseVisualStyleBackColor = true;
+            this.chkDisplayChangedFiles.CheckedChanged += new System.EventHandler(this.chkDisplayChangedFiles_CheckedChanged);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(484, 205);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(197, 45);
+            this.checkBox4.TabIndex = 18;
+            this.checkBox4.Text = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1396, 1090);
+            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.chkDisplayChangedFiles);
+            this.Controls.Add(this.chkDisplayAllFiles);
+            this.Controls.Add(this.chkAutostart);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblFilesChanged);
             this.Controls.Add(this.label5);
@@ -388,6 +439,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripOpenOrder;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripEdtTast;
+        private System.Windows.Forms.CheckBox chkAutostart;
+        private System.Windows.Forms.CheckBox chkDisplayAllFiles;
+        private System.Windows.Forms.CheckBox chkDisplayChangedFiles;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
 

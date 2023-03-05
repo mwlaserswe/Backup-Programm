@@ -38,6 +38,11 @@ namespace Backup_Programm
         string BasisDirTarget = @"D:\Temp\";
         int CurrentEntry = 0;
         bool SingleStep = false;
+        bool AutoStart = false;
+        bool FlagListAllFiles = false;
+        bool FlagListChangedFiles = false;
+
+
         int FileCounter = 0;
         int FilesChanged = 0;
         string BackupTask = @"D:\BackupCfg.xml";
@@ -51,6 +56,7 @@ namespace Backup_Programm
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             // Read configuration
             CfgFile = (BackupConfig)DeserializeFromXmlFile(BackupTask, CfgFile.GetType(), Encoding.Default);
 
@@ -65,7 +71,14 @@ namespace Backup_Programm
                 SingleStep = CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
- 
+                AutoStart = CfgFile.Flags.FlagAutoStart;
+                chkAutostart.Checked = AutoStart;
+
+                FlagListAllFiles = CfgFile.Flags.FlagDisplayAllFiles;
+                chkDisplayAllFiles.Checked = FlagListAllFiles;
+
+
+
                 btnStartBackup.Enabled = true;
                 this.Text = BackupTask;
             }
@@ -115,21 +128,7 @@ namespace Backup_Programm
         private void button1_Click(object sender, EventArgs e)
         {
 
-            ////// Start with drives if you have to search the entire computer.
-            ////string[] drives = System.Environment.GetLogicalDrives();
-
-            ////listBox1.Items.Clear();
-            ////DirectoryInfo di = new DirectoryInfo(@"D:\Eigene Dateien\Test");
-            ////WalkDirectoryTree(di);
-
-            ////// Write out all the files that could not be processed.
-
-            ////// Console.WriteLine("Files with restricted access:");
-
-            ////foreach (string s in log)
-            ////{
-            ////    // Console.WriteLine(s);
-            ////}
+ 
         }
         private void WalkDirectoryTree(System.IO.DirectoryInfo root)
         {
@@ -167,9 +166,13 @@ namespace Backup_Programm
 
                     // Console.WriteLine(fi.FullName);
 
-                    listBox1.Items.Add(SourceFile.FullName);
-                    listBox1.SelectedIndex = listBox1.Items.Count - 1;
-                    listBox1.Update();
+                    if (FlagListAllFiles)
+                    {
+                        listBox1.Items.Add(SourceFile.FullName);
+                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
+                        listBox1.Update();
+                    }
+  
                     String TargetFileFullPath = GenerateFileNames(SourceFile.FullName, BasisDirSource, BasisDirTarget);
 
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
@@ -206,7 +209,10 @@ namespace Backup_Programm
             lblFilesChanged.Text = FilesChanged.ToString();
             lblFilesChanged.Update();
 
+            //====================================================================
             Ablauf();
+            //====================================================================
+
             btnStartBackup.Text = "Start Backup";
             btnStartBackup.Update();
         }
@@ -231,23 +237,43 @@ namespace Backup_Programm
                 if (line != "")
                 
 
-                    { if (counter >= CfgFile.CurrentEntry)
+                { if (counter >= CfgFile.CurrentEntry)
+                    {
+                        listBox1.Items.Add("====>    " + line);
+                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+                        FileCounter = 0;
+                        DirectoryInfo BackupListEntry = new DirectoryInfo(line);
+
+                        int pos = line.IndexOf(BasisDirSource, 0);
+                        if (pos < 0)
                         {
-                            listBox1.Items.Add("====>    " + line);
-                            listBox1.SelectedIndex = listBox1.Items.Count - 1;
-
-                            FileCounter = 0;
-                            DirectoryInfo BackupListEntry = new DirectoryInfo(line);
-                            WalkDirectoryTree(BackupListEntry);
-
-                            CfgFile.CurrentEntry = counter + 1;
-                            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
-
-                            if (SingleStep)
+                            string title = "Backup Programm";
+                            string message  = "Das Source-Directory" + Environment.NewLine 
+                                + BasisDirSource + Environment.NewLine
+                                + "passt nicht zum Directory"+ Environment.NewLine 
+                                + line;
+                            MessageBoxButtons buttons = MessageBoxButtons.OK;
+                            DialogResult result = MessageBox.Show(message, title, buttons);
+                            if (result == DialogResult.OK)
+                            {
                                 break;
 
+                                this.Close();
+                            }
+  
                         }
-                        counter++;
+
+                        WalkDirectoryTree(BackupListEntry);
+
+                        CfgFile.CurrentEntry = counter + 1;
+                        SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+
+                        if (SingleStep)
+                            break;
+
+                    }
+                    counter++;
 
                 }
             }
@@ -315,7 +341,14 @@ namespace Backup_Programm
                 }
                 FilesChanged++;
                 lblFilesChanged.Text = FilesChanged.ToString();
-                lblFilesChanged.Update();										 
+                lblFilesChanged.Update();	
+                
+                if (FlagListChangedFiles && ! FlagListAllFiles)
+                {
+                    listBox1.Items.Add(SourceFile.FullName);
+                    listBox1.SelectedIndex = listBox1.Items.Count - 1;
+                    listBox1.Update();
+                }
 
                 SourceFile.CopyTo(TargetFile.FullName);
             }
@@ -326,6 +359,13 @@ namespace Backup_Programm
                     FilesChanged++;
                     lblFilesChanged.Text = FilesChanged.ToString();
                     lblFilesChanged.Update();
+
+                    if (FlagListChangedFiles && !FlagListAllFiles)
+                    {
+                        listBox1.Items.Add(SourceFile.FullName);
+                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
+                        listBox1.Update();
+                    }
 
                     TargetFile.Delete();
                     SourceFile.CopyTo(TargetFile.FullName);
@@ -382,31 +422,20 @@ namespace Backup_Programm
  
         private void btnTests_Click(object sender, EventArgs e)
         {
-            //////// Person-Objekt erzeugen
-            ////Person person = new Person();
-            ////person.FirstName = "Zaphod";
-            ////person.LastName = "Beeblebox";
-            ////person.BirthDate = new DateTime(1900, 1, 1);
+            CfgFile = new BackupConfig();
 
-            ////SerializeToXmlFile(person, @"D:\Serialize.xml", Encoding.Default);
-
-
-            CfgFile.Test1 = "Zeile1";
-            CfgFile.Test2 = "Zeile2";
             CfgFile.Anzahl = 123;
             CfgFile.BasisDirSource = BasisDirSource;
             CfgFile.BasisDirTarget = BasisDirTarget;
 
             CfgFile.BackupList.Add(BasisDirSource); // adding elements using add() method
             CfgFile.BackupList.Add(BasisDirTarget);
-            CfgFile.BackupList.Add("5");
-            CfgFile.BackupList.Add("7");
+
+            CfgFile.Flags.FlagAutoStart = true;
+            CfgFile.Flags.FlagDisplayAllFiles = false;
+            CfgFile.Flags.FlagDisplayChangedFiles = false;
 
             SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
-
-
-            ////int a = 1;
-
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
@@ -482,6 +511,27 @@ namespace Backup_Programm
         {
          
 
+        }
+
+        private void chkAutostart_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoStart= chkAutostart.Checked;
+            CfgFile.Flags.FlagAutoStart = AutoStart;
+            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+        }
+
+        private void chkDisplayAllFiles_CheckedChanged(object sender, EventArgs e)
+        {
+            FlagListAllFiles = chkDisplayAllFiles.Checked;
+            CfgFile.Flags.FlagDisplayAllFiles = FlagListAllFiles;
+            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+        }
+
+        private void chkDisplayChangedFiles_CheckedChanged(object sender, EventArgs e)
+        {
+            FlagListChangedFiles = chkDisplayChangedFiles.Checked;
+            CfgFile.Flags.FlagDisplayChangedFiles = FlagListChangedFiles;
+            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
         }
     }
 }
