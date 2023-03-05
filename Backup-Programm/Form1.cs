@@ -465,6 +465,12 @@ namespace Backup_Programm
             }
 
         }
+
+        private void toolStripEdtTast_Click(object sender, EventArgs e)
+        {
+         
+
+        }
     }
 }
 

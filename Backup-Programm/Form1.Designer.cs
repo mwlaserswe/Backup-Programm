@@ -34,8 +34,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSelectSourcePath = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripOpenOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripEdtTast = new System.Windows.Forms.ToolStripMenuItem();
             this.btnStartBackup = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -104,18 +104,11 @@
             // toolStripMenuFile
             // 
             this.toolStripMenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSelectSourcePath,
-            this.toolStripOpenOrder});
+            this.toolStripOpenOrder,
+            this.toolStripEdtTast});
             this.toolStripMenuFile.Name = "toolStripMenuFile";
             this.toolStripMenuFile.Size = new System.Drawing.Size(87, 45);
             this.toolStripMenuFile.Text = "File";
-            // 
-            // toolStripSelectSourcePath
-            // 
-            this.toolStripSelectSourcePath.Name = "toolStripSelectSourcePath";
-            this.toolStripSelectSourcePath.Size = new System.Drawing.Size(484, 54);
-            this.toolStripSelectSourcePath.Text = "aaaa";
-            this.toolStripSelectSourcePath.Click += new System.EventHandler(this.toolStripSelectSourcePath_Click);
             // 
             // toolStripOpenOrder
             // 
@@ -124,6 +117,13 @@
             this.toolStripOpenOrder.Text = "Backup-Auftrag öffnen";
             this.toolStripOpenOrder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripOpenOrder.Click += new System.EventHandler(this.toolStripOpenOrder_Click);
+            // 
+            // toolStripEdtTast
+            // 
+            this.toolStripEdtTast.Name = "toolStripEdtTast";
+            this.toolStripEdtTast.Size = new System.Drawing.Size(484, 54);
+            this.toolStripEdtTast.Text = "toolStripEditTast";
+            this.toolStripEdtTast.Click += new System.EventHandler(this.toolStripEdtTast_Click);
             // 
             // btnStartBackup
             // 
@@ -371,7 +371,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkSingleStep;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripSelectSourcePath;
         private System.Windows.Forms.Button btnSelectSourcePath;
         private System.Windows.Forms.Button btnSelectTargetPath;
         private System.Windows.Forms.Label label3;
@@ -388,6 +387,7 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripMenuItem toolStripOpenOrder;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripEdtTast;
     }
 }
 
