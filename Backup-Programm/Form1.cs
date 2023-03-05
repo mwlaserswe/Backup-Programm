@@ -177,6 +177,7 @@ namespace Backup_Programm
 
                     FileCounter++;
                     lblFileCounter.Text = FileCounter.ToString();
+                    lblFileCounter.Update();											
                     CopyFile(SourceFile, TargetFile);
                 }
 
@@ -198,7 +199,16 @@ namespace Backup_Programm
 
         private void btnGetOwnDir_Click(object sender, EventArgs e)
         {
+            btnStartBackup.Text = "...Running...";
+            btnStartBackup.Update();
+
+            FilesChanged = 0;
+            lblFilesChanged.Text = FilesChanged.ToString();
+            lblFilesChanged.Update();
+
             Ablauf();
+            btnStartBackup.Text = "Start Backup";
+            btnStartBackup.Update();
         }
 
 
@@ -305,6 +315,7 @@ namespace Backup_Programm
                 }
                 FilesChanged++;
                 lblFilesChanged.Text = FilesChanged.ToString();
+                lblFilesChanged.Update();										 
 
                 SourceFile.CopyTo(TargetFile.FullName);
             }
@@ -314,6 +325,7 @@ namespace Backup_Programm
                 {
                     FilesChanged++;
                     lblFilesChanged.Text = FilesChanged.ToString();
+                    lblFilesChanged.Update();
 
                     TargetFile.Delete();
                     SourceFile.CopyTo(TargetFile.FullName);
