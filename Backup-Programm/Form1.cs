@@ -42,7 +42,7 @@ namespace Backup_Programm
         bool AutoStart = false;
         bool FlagListAllFiles = false;
         bool FlagListChangedFiles = false;
-        int WaitingTime = 0;
+        int WaitingTime = 10;
 
 
         int FileCounter = 0;
@@ -73,6 +73,12 @@ namespace Backup_Programm
                 txtTargetBaseDir.Text = BasisDirTarget;
 
                 WaitingTime = CfgFile.WaitingTime;
+                if (WaitingTime == 0)
+                {
+                    WaitingTime = 10;
+                    CfgFile.WaitingTime = WaitingTime;
+                    SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+                }
                 txtTime.Text = WaitingTime.ToString();
                 Ablauftimer.Interval = WaitingTime * 1000;
 
