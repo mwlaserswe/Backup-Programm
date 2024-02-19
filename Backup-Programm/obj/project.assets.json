@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    "net8.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    "net8.0-windows7.0": []
   },
   "packageFolders": {
     "C:\\Users\\Weing\\.nuget\\packages\\": {},
@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm.git\\Backup-Programm\\Backup-Programm.csproj",
+      "projectUniqueName": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm-2022\\Backup-Programm\\Backup-Programm.csproj",
       "projectName": "Backup-Programm",
-      "projectPath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm.git\\Backup-Programm\\Backup-Programm.csproj",
+      "projectPath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm-2022\\Backup-Programm\\Backup-Programm.csproj",
       "packagesPath": "C:\\Users\\Weing\\.nuget\\packages\\",
-      "outputPath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm.git\\Backup-Programm\\obj\\",
+      "outputPath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm-2022\\Backup-Programm\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -28,15 +28,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net8.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows7.0",
           "projectReferences": {}
         }
       },
@@ -47,24 +47,19 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows7.0",
         "imports": [
           "net461",
           "net462",
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.13, 3.1.13]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -73,7 +68,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

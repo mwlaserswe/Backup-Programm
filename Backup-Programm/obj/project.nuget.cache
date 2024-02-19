@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5paEJLBHKNxLwRdoxjEuTMmK19KesRlfymUIBj9eD/1a2mmLFM05VcRZs0nfrgJjJsMhbCYQFeh4CCFh4Au/NQ==",
+  "dgSpecHash": "7i8Du4vZ0DgqAOvUYSxpw+krBJLnsBHdNl8dKBskQ8H1kWP8doPOQUxzwvO0zV/gUgxTw62KEwPpbaTUqDkP1Q==",
   "success": true,
-  "projectFilePath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm.git\\Backup-Programm\\Backup-Programm.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Weing\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\Eigene Dateien\\Projekte privat\\Visual Studio\\Backup-Programm-2022\\Backup-Programm\\Backup-Programm.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

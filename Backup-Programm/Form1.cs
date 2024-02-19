@@ -28,8 +28,10 @@ using System.Xml.Serialization;
 
 namespace Backup_Programm
 {
+
     public partial class Form1 : Form
     {
+
         static System.Collections.Specialized.StringCollection log = new System.Collections.Specialized.StringCollection();
 
         static PerformanceCounter cpuCounter; // globaler PerformanceCounter 
@@ -47,12 +49,12 @@ namespace Backup_Programm
 
         int FileCounter = 0;
         int FilesChanged = 0;
-        string BackupTask = @"D:\BackupCfg.xml";
+        //string BackupTask = @"D:\BackupCfg.xml";
 
         int CntMeanValue = 0;
         float CpuUsage = 0;
 
-        BackupConfig CfgFile = new BackupConfig();
+        //BackupConfig CfgFile = new BackupConfig();
 
         public Form1()
         {
@@ -62,36 +64,39 @@ namespace Backup_Programm
         {
 
             // Read configuration
-            CfgFile = (BackupConfig)DeserializeFromXmlFile(BackupTask, CfgFile.GetType(), Encoding.Default);
+            Globals.CfgFile = (BackupConfig)MWTools.Tools.DeserializeFromXmlFile(Globals.BackupTask, Globals.CfgFile.GetType(), Encoding.Default);
 
-            if (CfgFile != null)
+            if (Globals.CfgFile != null)
             {
-                BasisDirSource = CfgFile.BasisDirSource;
-                BasisDirTarget = CfgFile.BasisDirTarget;
+                BasisDirSource = Globals.CfgFile.BasisDirSource;
+                BasisDirTarget = Globals.CfgFile.BasisDirTarget;
 
                 txtSourceBaseDir.Text = BasisDirSource;
                 txtTargetBaseDir.Text = BasisDirTarget;
 
-                WaitingTime = CfgFile.WaitingTime;
+                WaitingTime = Globals.CfgFile.WaitingTime;
                 if (WaitingTime == 0)
                 {
                     WaitingTime = 10;
-                    CfgFile.WaitingTime = WaitingTime;
-                    SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+                    Globals.CfgFile.WaitingTime = WaitingTime;
+                    MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
                 }
                 txtTime.Text = WaitingTime.ToString();
                 Ablauftimer.Interval = WaitingTime * 1000;
 
-                SingleStep = CfgFile.SingleStep;
+                SingleStep = Globals.CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
-                AutoStart = CfgFile.Flags.FlagAutoStart;
+                AutoStart = Globals.CfgFile.Flags.FlagAutoStart;
                 chkAutostart.Checked = AutoStart;
 
-                FlagListAllFiles = CfgFile.Flags.FlagDisplayAllFiles;
+                FlagListAllFiles = Globals.CfgFile.Flags.FlagDisplayAllFiles;
                 chkDisplayAllFiles.Checked = FlagListAllFiles;
 
-                AutoLoop = CfgFile.Flags.FlagAutoLoop;
+                FlagListChangedFiles = Globals.CfgFile.Flags.FlagDisplayChangedFiles;
+                chkDisplayChangedFiles.Checked = FlagListChangedFiles;
+
+                AutoLoop = Globals.CfgFile.Flags.FlagAutoLoop;
                 chkAutomatic.Checked = FlagListAllFiles;
 
                 if (AutoStart)
@@ -101,23 +106,23 @@ namespace Backup_Programm
                 }
 
                 btnStartBackup.Enabled = true;
-                this.Text = BackupTask;
+                this.Text = Globals.BackupTask;
             }
             else
                 btnStartBackup.Enabled = false;
-                this.Text = BackupTask;
+            this.Text = Globals.BackupTask;
 
-                cpuCounter = new PerformanceCounter();
-                cpuCounter.CategoryName = "Processor";
-                cpuCounter.CounterName = "% Processor Time";
-                cpuCounter.InstanceName = "_Total"; // "_Total" entspricht der gesamten CPU Auslastung, Bei Computern mit mehr als 1 logischem Prozessor: "0" dem ersten Core, "1" dem zweiten...
-      }
+            cpuCounter = new PerformanceCounter();
+            cpuCounter.CategoryName = "Processor";
+            cpuCounter.CounterName = "% Processor Time";
+            cpuCounter.InstanceName = "_Total"; // "_Total" entspricht der gesamten CPU Auslastung, Bei Computern mit mehr als 1 logischem Prozessor: "0" dem ersten Core, "1" dem zweiten...
+        }
 
         private void chkSingleStep_CheckedChanged(object sender, EventArgs e)
         {
             SingleStep = chkSingleStep.Checked;
-            CfgFile.SingleStep = SingleStep;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Globals.CfgFile.SingleStep = SingleStep;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
 
         }
         private void btnSelectSourcePath_Click(object sender, EventArgs e)
@@ -127,8 +132,8 @@ namespace Backup_Programm
             if (result == DialogResult.OK)
             {
                 BasisDirSource = folderBrowserDialog1.SelectedPath;
-                CfgFile.BasisDirSource = BasisDirSource;
-                SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+                Globals.CfgFile.BasisDirSource = BasisDirSource;
+                MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
                 txtSourceBaseDir.Text = BasisDirSource;
             }
         }
@@ -139,17 +144,21 @@ namespace Backup_Programm
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
-                BasisDirTarget= folderBrowserDialog1.SelectedPath;
-                CfgFile.BasisDirTarget = BasisDirTarget;
-                SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+                BasisDirTarget = folderBrowserDialog1.SelectedPath;
+                Globals.CfgFile.BasisDirTarget = BasisDirTarget;
+                MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
                 txtTargetBaseDir.Text = BasisDirTarget;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Globals Glb = new Globals();
 
- 
+            Globals.myInt = 10;
+
+            int a = 1;
+
         }
         private void WalkDirectoryTree(System.IO.DirectoryInfo root)
         {
@@ -195,7 +204,7 @@ namespace Backup_Programm
                         listBox1.SelectedIndex = listBox1.Items.Count - 1;
                         listBox1.Update();
                     }
-  
+
                     String TargetFileFullPath = GenerateFileNames(SourceFile.FullName, BasisDirSource, BasisDirTarget);
 
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
@@ -203,7 +212,7 @@ namespace Backup_Programm
 
                     FileCounter++;
                     lblFileCounter.Text = FileCounter.ToString();
-                    lblFileCounter.Update();											
+                    lblFileCounter.Update();
                     CopyFile(SourceFile, TargetFile);
                 }
 
@@ -218,10 +227,6 @@ namespace Backup_Programm
             }
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void btnGetOwnDir_Click(object sender, EventArgs e)
         {
@@ -247,7 +252,7 @@ namespace Backup_Programm
         private void Ablauf()
         {
             // Configuration erneut einlesen, damit man die Liste während des Programmlaufs ändern kann
-            CfgFile = (BackupConfig)DeserializeFromXmlFile(BackupTask, CfgFile.GetType(), Encoding.Default);
+            Globals.CfgFile = (BackupConfig)MWTools.Tools.DeserializeFromXmlFile(Globals.BackupTask, Globals.CfgFile.GetType(), Encoding.Default);
 
             FileInfo BackupList = new FileInfo(Assembly.GetEntryAssembly().Location);
 
@@ -256,12 +261,13 @@ namespace Backup_Programm
             //listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
 
             // Read the Backup listc ine by line.  
-            foreach (string line in CfgFile.BackupList)
+            foreach (string line in Globals.CfgFile.BackupList)
             {
                 if (line != "")
-                
 
-                { if (counter >= CfgFile.CurrentEntry)
+
+                {
+                    if (counter >= Globals.CfgFile.CurrentEntry)
                     {
                         listBox1.Items.Add("====>    " + line);
                         listBox1.SelectedIndex = listBox1.Items.Count - 1;
@@ -273,9 +279,9 @@ namespace Backup_Programm
                         if (pos < 0)
                         {
                             string title = "Backup Programm";
-                            string message  = "Das Source-Directory" + Environment.NewLine 
+                            string message = "Das Source-Directory" + Environment.NewLine
                                 + BasisDirSource + Environment.NewLine
-                                + "passt nicht zum Directory"+ Environment.NewLine 
+                                + "passt nicht zum Directory" + Environment.NewLine
                                 + line;
                             MessageBoxButtons buttons = MessageBoxButtons.OK;
                             DialogResult result = MessageBox.Show(message, title, buttons);
@@ -285,13 +291,13 @@ namespace Backup_Programm
 
                                 this.Close();
                             }
-  
+
                         }
 
                         WalkDirectoryTree(BackupListEntry);
 
-                        CfgFile.CurrentEntry = counter + 1;
-                        SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+                        Globals.CfgFile.CurrentEntry = counter + 1;
+                        MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
 
                         if (SingleStep)
                             break;
@@ -303,10 +309,10 @@ namespace Backup_Programm
             }
 
             // Wenn "BackupCfg.xml" abgearbeitet wurde, CfgFile.CurrentEntry wieder auf 0 setzen
-            if (counter >= CfgFile.CurrentEntry)
+            if (counter >= Globals.CfgFile.CurrentEntry)
             {
-                CfgFile.CurrentEntry = 0;
-                SerializeToXmlFile(CfgFile,BackupTask, Encoding.Default);
+                Globals.CfgFile.CurrentEntry = 0;
+                MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
                 //listBox1.Items.Clear();
                 //listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
             }
@@ -365,9 +371,9 @@ namespace Backup_Programm
                 }
                 FilesChanged++;
                 lblFilesChanged.Text = FilesChanged.ToString();
-                lblFilesChanged.Update();	
-                
-                if (FlagListChangedFiles && ! FlagListAllFiles)
+                lblFilesChanged.Update();
+
+                if (FlagListChangedFiles && !FlagListAllFiles)
                 {
                     listBox1.Items.Add(SourceFile.FullName);
                     listBox1.SelectedIndex = listBox1.Items.Count - 1;
@@ -394,7 +400,7 @@ namespace Backup_Programm
                     TargetFile.Delete();
                     SourceFile.CopyTo(TargetFile.FullName);
                 }
- 
+
             }
         }
 
@@ -413,68 +419,37 @@ namespace Backup_Programm
 
         }
 
-        public static void SerializeToXmlFile(object obj, string filename, Encoding encoding)
-        {
-            // XmlSerializer für den Typ des Objekts erzeugen
-            XmlSerializer serializer = new XmlSerializer(obj.GetType());
-            // Objekt über ein StreamWriter-Objekt serialisieren
-            using (StreamWriter streamWriter = new StreamWriter(filename, false, encoding))
-            {
-                serializer.Serialize(streamWriter, obj);
-
-            }
-        }
-
-        public static object DeserializeFromXmlFile(string filename, Type objectType, Encoding encoding)
-        {
-            try
-            {
-                // XmlSerializer für den Typ des Objekts erzeugen
-                XmlSerializer serializer = new XmlSerializer(objectType);
-                // Objekt über ein StreamReader-Objekt serialisieren
-                using (StreamReader streamReader = new StreamReader(filename, encoding))
-                {
-                    return serializer.Deserialize(streamReader);
-                }
-            }
-            catch
-            {
-                return (null);
-            }
-            
-        }
- 
         private void btnTests_Click(object sender, EventArgs e)
         {
-            CfgFile = new BackupConfig();
+            Globals.CfgFile = new BackupConfig();
 
-            CfgFile.Anzahl = 123;
-            CfgFile.BasisDirSource = BasisDirSource;
-            CfgFile.BasisDirTarget = BasisDirTarget;
+            Globals.CfgFile.Anzahl = 123;
+            Globals.CfgFile.BasisDirSource = BasisDirSource;
+            Globals.CfgFile.BasisDirTarget = BasisDirTarget;
 
-            CfgFile.BackupList.Add(BasisDirSource); // adding elements using add() method
-            CfgFile.BackupList.Add(BasisDirTarget);
+            Globals.CfgFile.BackupList.Add(BasisDirSource); // adding elements using add() method
+            Globals.CfgFile.BackupList.Add(BasisDirTarget);
 
-            CfgFile.Flags.FlagAutoStart = true;
-            CfgFile.Flags.FlagDisplayAllFiles = false;
-            CfgFile.Flags.FlagDisplayChangedFiles = false;
+            Globals.CfgFile.Flags.FlagAutoStart = true;
+            Globals.CfgFile.Flags.FlagDisplayAllFiles = false;
+            Globals.CfgFile.Flags.FlagDisplayChangedFiles = false;
 
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
-            CfgFile = (BackupConfig)DeserializeFromXmlFile(BackupTask, CfgFile.GetType(), Encoding.Default);
+            Globals.CfgFile = (BackupConfig)MWTools.Tools.DeserializeFromXmlFile(Globals.BackupTask, Globals.CfgFile.GetType(), Encoding.Default);
 
-            foreach (string line in CfgFile.BackupList)
+            foreach (string line in Globals.CfgFile.BackupList)
             {
                 int a = 1;
             }
-         }
+        }
 
         private void Ablauftimer_Tick(object sender, EventArgs e)
-        {   
- 
+        {
+
             if (chkAutomatic.Checked)
             {
                 Ablauftimer.Enabled = false;
@@ -491,6 +466,7 @@ namespace Backup_Programm
                 Ablauf();
                 //====================================================================
 
+                DisplaySeconds = 0;
                 btnStartBackup.Text = "Start Backup";
                 btnStartBackup.Update();
 
@@ -517,68 +493,64 @@ namespace Backup_Programm
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                BackupTask = openFileDialog1.FileName;
+                Globals.BackupTask = openFileDialog1.FileName;
 
-                CfgFile = new BackupConfig();
-                CfgFile = (BackupConfig)DeserializeFromXmlFile(BackupTask, CfgFile.GetType(), Encoding.Default);
+                Globals.CfgFile = new BackupConfig();
+                Globals.CfgFile = (BackupConfig)MWTools.Tools.DeserializeFromXmlFile(Globals.BackupTask, Globals.CfgFile.GetType(), Encoding.Default);
 
-                BasisDirSource = CfgFile.BasisDirSource;
-                BasisDirTarget = CfgFile.BasisDirTarget;
+                BasisDirSource = Globals.CfgFile.BasisDirSource;
+                BasisDirTarget = Globals.CfgFile.BasisDirTarget;
 
                 txtSourceBaseDir.Text = BasisDirSource;
                 txtTargetBaseDir.Text = BasisDirTarget;
 
-                SingleStep = CfgFile.SingleStep;
+                SingleStep = Globals.CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
                 btnStartBackup.Enabled = true;
-                this.Text = BackupTask;
+                this.Text = Globals.BackupTask;
             }
 
         }
 
         private void toolStripEdtTast_Click(object sender, EventArgs e)
         {
-         
+
 
         }
         private void chkAutomatic_CheckedChanged(object sender, EventArgs e)
         {
             AutoLoop = chkAutomatic.Checked;
-            CfgFile.Flags.FlagAutoLoop = AutoLoop;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Globals.CfgFile.Flags.FlagAutoLoop = AutoLoop;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
             Ablauftimer.Enabled = AutoLoop;
         }
 
         private void chkAutostart_CheckedChanged(object sender, EventArgs e)
         {
-            AutoStart= chkAutostart.Checked;
-            CfgFile.Flags.FlagAutoStart = AutoStart;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            AutoStart = chkAutostart.Checked;
+            Globals.CfgFile.Flags.FlagAutoStart = AutoStart;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
         }
 
         private void chkDisplayAllFiles_CheckedChanged(object sender, EventArgs e)
         {
             FlagListAllFiles = chkDisplayAllFiles.Checked;
-            CfgFile.Flags.FlagDisplayAllFiles = FlagListAllFiles;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Globals.CfgFile.Flags.FlagDisplayAllFiles = FlagListAllFiles;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
         }
 
         private void chkDisplayChangedFiles_CheckedChanged(object sender, EventArgs e)
         {
             FlagListChangedFiles = chkDisplayChangedFiles.Checked;
-            CfgFile.Flags.FlagDisplayChangedFiles = FlagListChangedFiles;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Globals.CfgFile.Flags.FlagDisplayChangedFiles = FlagListChangedFiles;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
         }
 
         private void DiplayTimer_Tick(object sender, EventArgs e)
         {
-
-            
-
-
             CpuUsage = CpuUsage + cpuCounter.NextValue();
-            
+
             if (CntMeanValue >= 10)
             {
                 lblCpuUsage.Text = (CpuUsage / 10).ToString("N0") + " %";
@@ -588,10 +560,6 @@ namespace Backup_Programm
             }
 
             CntMeanValue++;
-
-
-
-
 
             if (Ablauftimer.Enabled)
             {
@@ -607,15 +575,22 @@ namespace Backup_Programm
                 DisplaySeconds = 0;
             }
 
-       }
+        }
 
         private void btnSetTime_Click(object sender, EventArgs e)
         {
             WaitingTime = Convert.ToInt32(txtTime.Text);
-            CfgFile.WaitingTime = WaitingTime;
-            SerializeToXmlFile(CfgFile, BackupTask, Encoding.Default);
+            Globals.CfgFile.WaitingTime = WaitingTime;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
 
             Ablauftimer.Interval = WaitingTime * 1000;
+        }
+
+        private void toolStriDisplayOrder_Click(object sender, EventArgs e)
+        {
+            Form2 Form2 = new Form2();
+            Form2.Show();
+
         }
     }
 }
