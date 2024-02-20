@@ -46,6 +46,7 @@ namespace Backup_Programm
                 }
 
             }
+            listBoxOrder.SelectedIndex = Globals.CfgFile.CurrentEntry;
         }
 
         private void btnDefineStartOrder_Click(object sender, EventArgs e)

@@ -309,12 +309,10 @@ namespace Backup_Programm
             }
 
             // Wenn "BackupCfg.xml" abgearbeitet wurde, CfgFile.CurrentEntry wieder auf 0 setzen
-            if (counter >= Globals.CfgFile.CurrentEntry)
+            if ( Globals.CfgFile.CurrentEntry >= Globals.CfgFile.BackupList.Count)
             {
                 Globals.CfgFile.CurrentEntry = 0;
                 MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
-                //listBox1.Items.Clear();
-                //listBox1.Items.Add("====>     Backup-Liste wird von vorne abgearbeitet");
             }
         }
 
