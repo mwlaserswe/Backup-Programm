@@ -1,5 +1,6 @@
 
 - Stop-Button
+- Fehlerbehandlung !!!
 - Texte und Buttos sollen bei jeder Bildschirmauflösung passen
 - Was ist der Unterschied zw. Autostart und Automatischer Ablauf
 - sinnvolle Log-Datei
@@ -8,5 +9,12 @@
 Autostart:
 - Windows-Taste + r			(= Aufführen)
 - shell:startup
+
+Funktionierende Einstellung:
+- Autostart
+- Automatischer Ablauf
+- Single Step
+- Wartezeit 10s
+
 
 
