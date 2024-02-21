@@ -1,0 +1,12 @@
+
+- Stop-Button
+- Texte und Buttos sollen bei jeder Bildschirmauflösung passen
+- Was ist der Unterschied zw. Autostart und Automatischer Ablauf
+- sinnvolle Log-Datei
+
+
+Autostart:
+- Windows-Taste + r			(= Aufführen)
+- shell:startup
+
+
