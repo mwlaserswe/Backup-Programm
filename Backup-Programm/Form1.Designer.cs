@@ -61,7 +61,6 @@
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            chkAutostart = new System.Windows.Forms.CheckBox();
             chkDisplayAllFiles = new System.Windows.Forms.CheckBox();
             chkDisplayChangedFiles = new System.Windows.Forms.CheckBox();
             checkBox4 = new System.Windows.Forms.CheckBox();
@@ -72,6 +71,7 @@
             label8 = new System.Windows.Forms.Label();
             btnSetTime = new System.Windows.Forms.Button();
             btnSkip = new System.Windows.Forms.Button();
+            btnStopBackup = new System.Windows.Forms.Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -262,11 +262,11 @@
             // chkAutomatic
             // 
             chkAutomatic.AutoSize = true;
-            chkAutomatic.Location = new System.Drawing.Point(323, 486);
+            chkAutomatic.Location = new System.Drawing.Point(61, 145);
             chkAutomatic.Name = "chkAutomatic";
-            chkAutomatic.Size = new System.Drawing.Size(435, 45);
+            chkAutomatic.Size = new System.Drawing.Size(120, 45);
             chkAutomatic.TabIndex = 15;
-            chkAutomatic.Text = "Automatische Wiederholung";
+            chkAutomatic.Text = "Auto";
             chkAutomatic.UseVisualStyleBackColor = true;
             chkAutomatic.CheckedChanged += chkAutomatic_CheckedChanged;
             // 
@@ -332,17 +332,6 @@
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // chkAutostart
-            // 
-            chkAutostart.AutoSize = true;
-            chkAutostart.Location = new System.Drawing.Point(484, 53);
-            chkAutostart.Name = "chkAutostart";
-            chkAutostart.Size = new System.Drawing.Size(178, 45);
-            chkAutostart.TabIndex = 16;
-            chkAutostart.Text = "Autostart";
-            chkAutostart.UseVisualStyleBackColor = true;
-            chkAutostart.CheckedChanged += chkAutostart_CheckedChanged;
             // 
             // chkDisplayAllFiles
             // 
@@ -437,11 +426,22 @@
             btnSkip.UseVisualStyleBackColor = true;
             btnSkip.Click += btnSkip_Click;
             // 
+            // btnStopBackup
+            // 
+            btnStopBackup.Location = new System.Drawing.Point(61, 209);
+            btnStopBackup.Name = "btnStopBackup";
+            btnStopBackup.Size = new System.Drawing.Size(348, 58);
+            btnStopBackup.TabIndex = 21;
+            btnStopBackup.Text = "Stop Backup";
+            btnStopBackup.UseVisualStyleBackColor = true;
+            btnStopBackup.Click += btnStopBackup_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1397, 1090);
+            Controls.Add(btnStopBackup);
             Controls.Add(btnSkip);
             Controls.Add(btnSetTime);
             Controls.Add(label8);
@@ -451,7 +451,6 @@
             Controls.Add(checkBox4);
             Controls.Add(chkDisplayChangedFiles);
             Controls.Add(chkDisplayAllFiles);
-            Controls.Add(chkAutostart);
             Controls.Add(label6);
             Controls.Add(lblFilesChanged);
             Controls.Add(label5);
@@ -516,7 +515,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripOpenOrder;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripEdtTast;
-        private System.Windows.Forms.CheckBox chkAutostart;
         private System.Windows.Forms.CheckBox chkDisplayAllFiles;
         private System.Windows.Forms.CheckBox chkDisplayChangedFiles;
         private System.Windows.Forms.CheckBox checkBox4;
@@ -528,6 +526,7 @@
         private System.Windows.Forms.Button btnSetTime;
         private System.Windows.Forms.ToolStripMenuItem toolStriDisplayOrder;
         private System.Windows.Forms.Button btnSkip;
+        private System.Windows.Forms.Button btnStopBackup;
     }
 }
 

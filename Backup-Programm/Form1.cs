@@ -40,12 +40,13 @@ namespace Backup_Programm
         string BasisDirTarget = @"D:\Temp\";
         int DisplaySeconds = 0;
         bool SingleStep = false;
-        bool AutoLoop = false;
+        bool FlagAutoLoop = false;
         bool AutoStart = false;
         bool FlagListAllFiles = false;
         bool FlagListChangedFiles = false;
         int WaitingTime = 10;
         bool FlagSkip = false;
+        bool FlagStop = false;  
 
 
         int FileCounter = 0;
@@ -88,23 +89,14 @@ namespace Backup_Programm
                 SingleStep = Globals.CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
-                AutoStart = Globals.CfgFile.Flags.FlagAutoStart;
-                chkAutostart.Checked = AutoStart;
+                FlagAutoLoop = Globals.CfgFile.Flags.FlagAutoLoop;
+                chkAutomatic.Checked = FlagAutoLoop;
 
                 FlagListAllFiles = Globals.CfgFile.Flags.FlagDisplayAllFiles;
                 chkDisplayAllFiles.Checked = FlagListAllFiles;
 
                 FlagListChangedFiles = Globals.CfgFile.Flags.FlagDisplayChangedFiles;
                 chkDisplayChangedFiles.Checked = FlagListChangedFiles;
-
-                AutoLoop = Globals.CfgFile.Flags.FlagAutoLoop;
-                chkAutomatic.Checked = FlagListAllFiles;
-
-                if (AutoStart)
-                {
-                    AutoLoop = true;
-                    chkAutomatic.Checked = AutoLoop;
-                }
 
                 btnStartBackup.Enabled = true;
                 this.Text = Globals.BackupTask;
@@ -158,6 +150,8 @@ namespace Backup_Programm
 
             Globals.myInt = 10;
 
+            button1.BackColor = SystemColors.ControlLightLight;
+
             int a = 1;
 
         }
@@ -198,6 +192,12 @@ namespace Backup_Programm
                     // where the file has been deleted since the call to TraverseTree().
 
                     // Console.WriteLine(fi.FullName);
+
+                    if (FlagStop)
+                    {
+                        break;
+                    }
+
 
                     if (FlagListAllFiles)
                     {
@@ -264,9 +264,12 @@ namespace Backup_Programm
             // Read the Backup listc ine by line.  
             foreach (string line in Globals.CfgFile.BackupList)
             {
+                if (FlagStop)
+                { 
+                    break;
+                }
+
                 if (line != "")
-
-
                 {
                     if (counter >= Globals.CfgFile.CurrentEntry)
                     {
@@ -307,7 +310,12 @@ namespace Backup_Programm
                     counter++;
 
                 }
+
+
             }
+
+            FlagStop = false;
+            btnStopBackup.BackColor = SystemColors.ControlLightLight;
 
             // Wenn "BackupCfg.xml" abgearbeitet wurde, CfgFile.CurrentEntry wieder auf 0 setzen
             if (Globals.CfgFile.CurrentEntry >= Globals.CfgFile.BackupList.Count)
@@ -519,18 +527,12 @@ namespace Backup_Programm
         }
         private void chkAutomatic_CheckedChanged(object sender, EventArgs e)
         {
-            AutoLoop = chkAutomatic.Checked;
-            Globals.CfgFile.Flags.FlagAutoLoop = AutoLoop;
+            FlagAutoLoop = chkAutomatic.Checked;
+            Globals.CfgFile.Flags.FlagAutoLoop = FlagAutoLoop;
             MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
-            Ablauftimer.Enabled = AutoLoop;
+            Ablauftimer.Enabled = FlagAutoLoop;
         }
 
-        private void chkAutostart_CheckedChanged(object sender, EventArgs e)
-        {
-            AutoStart = chkAutostart.Checked;
-            Globals.CfgFile.Flags.FlagAutoStart = AutoStart;
-            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
-        }
 
         private void chkDisplayAllFiles_CheckedChanged(object sender, EventArgs e)
         {
@@ -564,7 +566,7 @@ namespace Backup_Programm
             if (FlagSkip)
             {
                 FlagSkip = false;
-                Ablauftimer_Tick(null,null);
+                Ablauftimer_Tick(null, null);
             }
 
             if (Ablauftimer.Enabled)
@@ -601,7 +603,15 @@ namespace Backup_Programm
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            FlagSkip = true;   
+            FlagSkip = true;
+        }
+
+        private void btnStopBackup_Click(object sender, EventArgs e)
+        {
+            FlagStop = true;
+            btnStopBackup.BackColor = Color.Red;
+            FlagAutoLoop = false;
+            chkAutomatic.Checked = FlagAutoLoop;
         }
     }
 }
