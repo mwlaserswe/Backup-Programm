@@ -45,6 +45,7 @@ namespace Backup_Programm
         bool FlagListAllFiles = false;
         bool FlagListChangedFiles = false;
         int WaitingTime = 10;
+        bool FlagSkip = false;
 
 
         int FileCounter = 0;
@@ -309,7 +310,7 @@ namespace Backup_Programm
             }
 
             // Wenn "BackupCfg.xml" abgearbeitet wurde, CfgFile.CurrentEntry wieder auf 0 setzen
-            if ( Globals.CfgFile.CurrentEntry >= Globals.CfgFile.BackupList.Count)
+            if (Globals.CfgFile.CurrentEntry >= Globals.CfgFile.BackupList.Count)
             {
                 Globals.CfgFile.CurrentEntry = 0;
                 MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
@@ -559,6 +560,13 @@ namespace Backup_Programm
 
             CntMeanValue++;
 
+
+            if (FlagSkip)
+            {
+                FlagSkip = false;
+                Ablauftimer_Tick(null,null);
+            }
+
             if (Ablauftimer.Enabled)
             {
                 DisplaySeconds++;
@@ -589,6 +597,11 @@ namespace Backup_Programm
             Form2 Form2 = new Form2();
             Form2.Show();
 
+        }
+
+        private void btnSkip_Click(object sender, EventArgs e)
+        {
+            FlagSkip = true;   
         }
     }
 }
