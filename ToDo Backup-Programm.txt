@@ -4,6 +4,8 @@
 - Texte und Buttos sollen bei jeder Bildschirmauflösung passen
 - Was ist der Unterschied zw. Autostart und Automatischer Ablauf
 - sinnvolle Log-Datei
+- Einzeldateien sollten sich auch sichern lassen
+- völlig verschiedene Pfade
 
 
 Autostart:

@@ -550,17 +550,17 @@ namespace Backup_Programm
 
         private void DiplayTimer_Tick(object sender, EventArgs e)
         {
-            CpuUsage = CpuUsage + cpuCounter.NextValue();
+            //CpuUsage = CpuUsage + cpuCounter.NextValue();
 
-            if (CntMeanValue >= 10)
-            {
-                lblCpuUsage.Text = (CpuUsage / 10).ToString("N0") + " %";
+            //if (CntMeanValue >= 10)
+            //{
+            //    lblCpuUsage.Text = (CpuUsage / 10).ToString("N0") + " %";
 
-                CpuUsage = 0;
-                CntMeanValue = 0;
-            }
+            //    CpuUsage = 0;
+            //    CntMeanValue = 0;
+            //}
 
-            CntMeanValue++;
+            //CntMeanValue++;
 
 
             if (FlagSkip)

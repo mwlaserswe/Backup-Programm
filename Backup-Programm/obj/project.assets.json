@@ -8,19 +8,19 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\MW Laser\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Eigene Dateien\\Projekte privat\\VisualStudio\\Backup-Programm 2022\\Backup-Programm\\Backup-Programm.csproj",
+      "projectUniqueName": "C:\\Eigene Dateien\\Visual Studio\\Backup-Programm 2022\\Backup-Programm\\Backup-Programm.csproj",
       "projectName": "Backup-Programm",
-      "projectPath": "D:\\Eigene Dateien\\Projekte privat\\VisualStudio\\Backup-Programm 2022\\Backup-Programm\\Backup-Programm.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Eigene Dateien\\Projekte privat\\VisualStudio\\Backup-Programm 2022\\Backup-Programm\\obj\\",
+      "projectPath": "C:\\Eigene Dateien\\Visual Studio\\Backup-Programm 2022\\Backup-Programm\\Backup-Programm.csproj",
+      "packagesPath": "C:\\Users\\MW Laser\\.nuget\\packages\\",
+      "outputPath": "C:\\Eigene Dateien\\Visual Studio\\Backup-Programm 2022\\Backup-Programm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MW Laser\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
