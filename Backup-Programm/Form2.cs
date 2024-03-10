@@ -46,10 +46,19 @@ namespace Backup_Programm
                 }
 
             }
-            listBoxOrder.SelectedIndex = Globals.CfgFile.CurrentEntry;
+            
+            // Wenn eine kürzere Auftragsliste geladen wird, wird der erste Eintrag angewählt
+            if (Globals.CfgFile.CurrentEntry >= listBoxOrder.Items.Count) 
+            {
+                listBoxOrder.SelectedIndex = 0;
+            }
+            else
+            {
+                listBoxOrder.SelectedIndex = Globals.CfgFile.CurrentEntry;
+            }
         }
 
-        private void btnDefineStartOrder_Click(object sender, EventArgs e)
+        private void listBoxOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxOrder.SelectedIndex >= 0)
             {

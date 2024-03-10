@@ -6,6 +6,7 @@
 - sinnvolle Log-Datei
 - Einzeldateien sollten sich auch sichern lassen
 - OK	völlig verschiedene Pfade
+- OK	Wenn eine kürzere Auftragsliste geladen wird, wird der erste Eintrag angewählt
 
 
 Autostart:

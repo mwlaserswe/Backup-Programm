@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Backup-Programm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d6d1f2cc4234e588843dd394918988975735d11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3744fa0e67fcc8052a5e1e6b6b4309414dfc7c45")]
 [assembly: System.Reflection.AssemblyProductAttribute("Backup-Programm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Backup-Programm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
