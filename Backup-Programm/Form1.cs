@@ -146,13 +146,7 @@ namespace Backup_Programm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Globals Glb = new Globals();
-
-            Globals.myInt = 10;
-
-            button1.BackColor = SystemColors.ControlLightLight;
-
-            int a = 1;
+            string myString = GenerateFileNamesNew(@"Z:\Hardware\PL80\Doc", "Test", @"C:\MyBackup");
 
         }
         private void WalkDirectoryTree(System.IO.DirectoryInfo root)
@@ -206,7 +200,7 @@ namespace Backup_Programm
                         listBox1.Update();
                     }
 
-                    String TargetFileFullPath = GenerateFileNames(SourceFile.FullName, BasisDirSource, BasisDirTarget);
+                    String TargetFileFullPath = GenerateFileNamesNew(SourceFile.FullName, BasisDirSource, BasisDirTarget);
 
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
                     FileInfo TargetFile = new FileInfo(TargetFileFullPath);
@@ -425,6 +419,31 @@ namespace Backup_Programm
             return (TargetFileFullPath);
 
         }
+
+        private String GenerateFileNamesNew(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
+        {
+            string DriveLetter;
+            string TargetFileFullPath;
+            string FileName;
+
+            // Z:\Hardware\PL80\Doc ==> BackupDirName\HD_Z\Hardware\PL80\Doc
+            if (SourceFillFullPath.Length >= 2 && SourceFillFullPath[1] == ':')
+            {
+                DriveLetter = SourceFillFullPath[0].ToString();
+                FileName = SourceFillFullPath.Substring(2);
+                TargetFileFullPath = Path.Join(BasisDirTarget, "HD_" + DriveLetter, FileName);
+            }
+            else
+            {
+                MessageBox.Show("Der Dateiname muß mit einem Laufwerksbuchstaben anfangen:" + Environment.NewLine + SourceFillFullPath, "Ungültiger Dateiname in der XML-Datei", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TargetFileFullPath = "";
+            }
+
+
+            return (TargetFileFullPath);
+        }
+
+
 
         private void btnTests_Click(object sender, EventArgs e)
         {

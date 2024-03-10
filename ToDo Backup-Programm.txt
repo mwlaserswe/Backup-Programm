@@ -5,7 +5,7 @@
 - Was ist der Unterschied zw. Autostart und Automatischer Ablauf
 - sinnvolle Log-Datei
 - Einzeldateien sollten sich auch sichern lassen
-- völlig verschiedene Pfade
+- OK	völlig verschiedene Pfade
 
 
 Autostart:
@@ -18,5 +18,10 @@ Funktionierende Einstellung:
 - Single Step
 - Wartezeit 10s
 
+
+
+\\192.168.178.1\fritz.nas\Temp			==> BackupDirName\192.168.178.1\fritz.nas\Temp
+X:\Temp									==> BackupDirName\HD_X\Temp
+Z:\Hardware\PL80\Doc					==> BackupDirName\HD_Z\Hardware\PL80\Doc
 
 
