@@ -6,9 +6,7 @@
 // File Copy        https://dotnet-snippets.de/snippet/dateilisten-kopieren/1315
 
 //  Backup: z.B. von D:\Eigene Dateien\Test\Text Folder 1      --->   D:\Test Backup Server\Test\Text Folder 1
-//  BasisDirSource: D:\Eigene Dateien\
 //  BasisDirBackup: D:\Test Backup Server\
-//  Swcud7ZgG
 
 using System;
 using System.Collections.Generic;
@@ -36,7 +34,6 @@ namespace Backup_Programm
 
         static PerformanceCounter cpuCounter; // globaler PerformanceCounter 
 
-        string BasisDirSource = @"C:\Temp\";
         string BasisDirTarget = @"D:\Temp\";
         int DisplaySeconds = 0;
         bool SingleStep = false;
@@ -70,10 +67,8 @@ namespace Backup_Programm
 
             if (Globals.CfgFile != null)
             {
-                BasisDirSource = Globals.CfgFile.BasisDirSource;
                 BasisDirTarget = Globals.CfgFile.BasisDirTarget;
 
-                txtSourceBaseDir.Text = BasisDirSource;
                 txtTargetBaseDir.Text = BasisDirTarget;
 
                 WaitingTime = Globals.CfgFile.WaitingTime;
@@ -118,18 +113,6 @@ namespace Backup_Programm
             MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
 
         }
-        private void btnSelectSourcePath_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog1.SelectedPath = BasisDirSource;
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                BasisDirSource = folderBrowserDialog1.SelectedPath;
-                Globals.CfgFile.BasisDirSource = BasisDirSource;
-                MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
-                txtSourceBaseDir.Text = BasisDirSource;
-            }
-        }
 
         private void btnSelectTargetPath_Click(object sender, EventArgs e)
         {
@@ -146,7 +129,7 @@ namespace Backup_Programm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string myString = GenerateFileNamesNew(@"Z:\Hardware\PL80\Doc", "Test", @"C:\MyBackup");
+            string myString = GenerateFileNamesNew(@"Z:\Hardware\PL80\Doc", @"C:\MyBackup");
 
         }
         private void WalkDirectoryTree(System.IO.DirectoryInfo root)
@@ -200,7 +183,7 @@ namespace Backup_Programm
                         listBox1.Update();
                     }
 
-                    String TargetFileFullPath = GenerateFileNamesNew(SourceFile.FullName, BasisDirSource, BasisDirTarget);
+                    String TargetFileFullPath = GenerateFileNamesNew(SourceFile.FullName, BasisDirTarget);
 
                     //FileInfo SourceFile = new FileInfo(SourceFillFullPath);
                     FileInfo TargetFile = new FileInfo(TargetFileFullPath);
@@ -273,25 +256,6 @@ namespace Backup_Programm
                         FileCounter = 0;
                         DirectoryInfo BackupListEntry = new DirectoryInfo(line);
 
-                        int pos = line.IndexOf(BasisDirSource, 0);
-                        if (pos < 0)
-                        {
-                            string title = "Backup Programm";
-                            string message = "Das Source-Directory" + Environment.NewLine
-                                + BasisDirSource + Environment.NewLine
-                                + "passt nicht zum Directory" + Environment.NewLine
-                                + line;
-                            MessageBoxButtons buttons = MessageBoxButtons.OK;
-                            DialogResult result = MessageBox.Show(message, title, buttons);
-                            if (result == DialogResult.OK)
-                            {
-                                break;
-
-                                this.Close();
-                            }
-
-                        }
-
                         WalkDirectoryTree(BackupListEntry);
 
                         Globals.CfgFile.CurrentEntry = counter + 1;
@@ -319,49 +283,7 @@ namespace Backup_Programm
             }
         }
 
-        /// <summary>
-        /// Einfaches Testprogramm
-        /// - Die Datei Test 1.txt wird kopiert, wenn es eine neuere Version gibt
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFileCopy_Click(object sender, EventArgs e)
-        {
-
-
-
-            string curFile = @"D:\Eigene Dateien\Test\Test 1.txt";
-            string targetFile = @"D:\Test Backup Server\Test\Test 1.txt";
-
-            GenerateFileNames(curFile, BasisDirSource, BasisDirTarget);
-
-
-            if (!File.Exists(targetFile))
-            {
-                //targetFile = Path.Combine(targetFolder.FullName, System.IO.Path.GetFileName(curFile));
-                if (!Directory.Exists(@"D:\Test Backup Server\Test"))
-                {
-                    Directory.CreateDirectory(@"D:\Test Backup Server\Test");
-                }
-
-                System.IO.File.Copy(curFile, targetFile);
-            }
-            else
-            {
-                DateTime CurFileModification = File.GetLastWriteTime(curFile);
-                DateTime TargetFileModification = File.GetLastWriteTime(targetFile);
-                if (TargetFileModification < CurFileModification)
-                {
-                    //Directory.CreateDirectory(DOCORDNER)
-                    File.Delete(targetFile);
-                    System.IO.File.Copy(curFile, targetFile);
-                    ;
-                }
-            }
-        }
-
-
-        private void CopyFile(FileInfo SourceFile, FileInfo TargetFile)
+         private void CopyFile(FileInfo SourceFile, FileInfo TargetFile)
         {
             if (!TargetFile.Exists)
             {
@@ -406,21 +328,7 @@ namespace Backup_Programm
         }
 
 
-
-
-        private String GenerateFileNames(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
-        {
-            int lenDirSource = BasisDirSource.Length;
-            int lenDirBackup = BasisDirTarget.Length;
-
-            string FileName = SourceFillFullPath.Substring(lenDirSource);
-            string TargetFileFullPath = Path.Join(BasisDirTarget, FileName);
-
-            return (TargetFileFullPath);
-
-        }
-
-        private String GenerateFileNamesNew(string SourceFillFullPath, string BasisDirSource, string BasisDirTarget)
+        private String GenerateFileNamesNew(string SourceFillFullPath, string BasisDirTarget)
         {
             string DriveLetter;
             string TargetFileFullPath;
@@ -450,11 +358,9 @@ namespace Backup_Programm
             Globals.CfgFile = new BackupConfig();
 
             Globals.CfgFile.Anzahl = 123;
-            Globals.CfgFile.BasisDirSource = BasisDirSource;
             Globals.CfgFile.BasisDirTarget = BasisDirTarget;
 
-            Globals.CfgFile.BackupList.Add(BasisDirSource); // adding elements using add() method
-            Globals.CfgFile.BackupList.Add(BasisDirTarget);
+           Globals.CfgFile.BackupList.Add(BasisDirTarget);
 
             Globals.CfgFile.Flags.FlagAutoStart = true;
             Globals.CfgFile.Flags.FlagDisplayAllFiles = false;
@@ -524,10 +430,8 @@ namespace Backup_Programm
                 Globals.CfgFile = new BackupConfig();
                 Globals.CfgFile = (BackupConfig)MWTools.Tools.DeserializeFromXmlFile(Globals.BackupTask, Globals.CfgFile.GetType(), Encoding.Default);
 
-                BasisDirSource = Globals.CfgFile.BasisDirSource;
                 BasisDirTarget = Globals.CfgFile.BasisDirTarget;
 
-                txtSourceBaseDir.Text = BasisDirSource;
                 txtTargetBaseDir.Text = BasisDirTarget;
 
                 SingleStep = Globals.CfgFile.SingleStep;
