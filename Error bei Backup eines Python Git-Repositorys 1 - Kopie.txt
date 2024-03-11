@@ -1,0 +1,192 @@
+Informationen über das Aufrufen von JIT-Debuggen
+anstelle dieses Dialogfelds finden Sie am Ende dieser Meldung.
+
+************** Ausnahmetext **************
+System.UnauthorizedAccessException: Access to the path 'E:\BackupP73\HD_D\Eigene Dateien\Projekte privat\Python\.git\objects\00\46114f306dfa093df191115ff4ed2493141d86' is denied.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.FileInfo.Delete()
+   at Backup_Programm.Form1.CopyFile(FileInfo SourceFile, FileInfo TargetFile) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 323
+   at Backup_Programm.Form1.WalkDirectoryTree(DirectoryInfo root) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 194
+   at Backup_Programm.Form1.WalkDirectoryTree(DirectoryInfo root) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 203
+   at Backup_Programm.Form1.WalkDirectoryTree(DirectoryInfo root) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 203
+   at Backup_Programm.Form1.WalkDirectoryTree(DirectoryInfo root) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 203
+   at Backup_Programm.Form1.WalkDirectoryTree(DirectoryInfo root) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 203
+   at Backup_Programm.Form1.Ablauf() in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 259
+   at Backup_Programm.Form1.btnGetOwnDir_Click(Object sender, EventArgs e) in C:\Eigene Dateien\Visual Studio\Backup-Programm 2022\Backup-Programm\Form1.cs:line 220
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+
+
+************** Geladene Assemblys **************
+System.Private.CoreLib
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Private.CoreLib.dll
+----------------------------------------
+Backup-Programm
+    Assemblyversion: 1.0.0.0
+    Speicherort: D:\Eigene Dateien\Projekte privat\Visual Studio\Backup-Programm-2022\Backup-Programm\bin\Debug\net8.0-windows7.0\Backup-Programm.dll
+----------------------------------------
+System.Runtime
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Runtime.dll
+----------------------------------------
+System.Windows.Forms
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\System.Windows.Forms.dll
+----------------------------------------
+System.Windows.Forms.Primitives
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\System.Windows.Forms.Primitives.dll
+----------------------------------------
+System.ComponentModel.Primitives
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.ComponentModel.Primitives.dll
+----------------------------------------
+System.Drawing.Primitives
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Drawing.Primitives.dll
+----------------------------------------
+System.Collections.Specialized
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Collections.Specialized.dll
+----------------------------------------
+System.Drawing.Common
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\System.Drawing.Common.dll
+----------------------------------------
+System.Runtime.InteropServices
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Runtime.InteropServices.dll
+----------------------------------------
+System.Threading
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Threading.dll
+----------------------------------------
+System.Diagnostics.TraceSource
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Diagnostics.TraceSource.dll
+----------------------------------------
+System.Collections
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Collections.dll
+----------------------------------------
+Microsoft.Win32.Primitives
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\Microsoft.Win32.Primitives.dll
+----------------------------------------
+System.ComponentModel.EventBasedAsync
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.ComponentModel.EventBasedAsync.dll
+----------------------------------------
+System.Threading.Thread
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Threading.Thread.dll
+----------------------------------------
+Accessibility
+    Assemblyversion: 4.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\Accessibility.dll
+----------------------------------------
+System.ComponentModel.TypeConverter
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.ComponentModel.TypeConverter.dll
+----------------------------------------
+System.Numerics.Vectors
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Numerics.Vectors.dll
+----------------------------------------
+Microsoft.Win32.SystemEvents
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\Microsoft.Win32.SystemEvents.dll
+----------------------------------------
+System.Collections.Concurrent
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Collections.Concurrent.dll
+----------------------------------------
+System.ComponentModel
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.ComponentModel.dll
+----------------------------------------
+System.Memory
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Memory.dll
+----------------------------------------
+System.Runtime.Loader
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Runtime.Loader.dll
+----------------------------------------
+System.Windows.Forms.resources
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\de\System.Windows.Forms.resources.dll
+----------------------------------------
+System.Collections.NonGeneric
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Collections.NonGeneric.dll
+----------------------------------------
+System.Diagnostics.PerformanceCounter
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.1\System.Diagnostics.PerformanceCounter.dll
+----------------------------------------
+System.Xml.XmlSerializer
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Xml.XmlSerializer.dll
+----------------------------------------
+System.Private.Xml
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Private.Xml.dll
+----------------------------------------
+System.Text.Encoding.Extensions
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Text.Encoding.Extensions.dll
+----------------------------------------
+System.Reflection.Emit.ILGeneration
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Reflection.Emit.ILGeneration.dll
+----------------------------------------
+System.Reflection.Emit
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Reflection.Emit.dll
+----------------------------------------
+Microsoft.GeneratedCode
+    Assemblyversion: 1.0.0.0
+    Speicherort: 
+----------------------------------------
+System.Reflection.Primitives
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Reflection.Primitives.dll
+----------------------------------------
+System.Text.RegularExpressions
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Text.RegularExpressions.dll
+----------------------------------------
+System.ObjectModel
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.ObjectModel.dll
+----------------------------------------
+System.Private.Uri
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Private.Uri.dll
+----------------------------------------
+System.Diagnostics.StackTrace
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Diagnostics.StackTrace.dll
+----------------------------------------
+System.Reflection.Metadata
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Reflection.Metadata.dll
+----------------------------------------
+System.Collections.Immutable
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.Collections.Immutable.dll
+----------------------------------------
+System.IO.MemoryMappedFiles
+    Assemblyversion: 8.0.0.0
+    Speicherort: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.1\System.IO.MemoryMappedFiles.dll
+----------------------------------------
+
+************** JIT-Debuggen **************
+
+

@@ -1,13 +1,15 @@
 
-- Stop-Button
+- OK	Stop-Button
 - Fehlerbehandlung !!!
 - Texte und Buttos sollen bei jeder Bildschirmauflösung passen
 - Was ist der Unterschied zw. Autostart und Automatischer Ablauf
 - sinnvolle Log-Datei
 - Einzeldateien sollten sich auch sichern lassen
 - OK	völlig verschiedene Pfade
-- OK	Wenn eine kürzere Auftragsliste geladen wird, wird der erste Eintrag angewählt
-
+- OK	Wenn eine kürzere Auftragsliste geladen wird, wird der erste Eintrag angewählt.
+- Bei großen Dateien (z.B VMs) wäre eine Progressbar schön.
+- Bereinigung: Dateien im Backup löschen, die es im Sourceverzeichnis nicht mehr gibt.
+  Wichtig ist das auch bei verschobenen Dateien.
 
 Autostart:
 - Windows-Taste + r			(= Aufführen)
