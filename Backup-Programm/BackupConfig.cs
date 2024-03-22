@@ -21,6 +21,7 @@ namespace Backup_Programm
         public string BasisDirTarget;
         public int CurrentEntry;
         public bool SingleStep;
+        public bool Minimized;
         public Flags Flags;
 
         public List<String> BackupList = new List<String>();

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new System.Windows.Forms.Button();
             txtTargetBaseDir = new System.Windows.Forms.TextBox();
             listBox1 = new System.Windows.Forms.ListBox();
@@ -70,15 +71,16 @@
             btnSetTime = new System.Windows.Forms.Button();
             btnSkip = new System.Windows.Forms.Button();
             btnStopBackup = new System.Windows.Forms.Button();
+            notifyIcon1 = new System.Windows.Forms.NotifyIcon(components);
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(395, 25);
-            button1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            button1.Location = new System.Drawing.Point(734, 53);
+            button1.Margin = new System.Windows.Forms.Padding(2);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(75, 16);
+            button1.Size = new System.Drawing.Size(139, 34);
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -86,20 +88,19 @@
             // 
             // txtTargetBaseDir
             // 
-            txtTargetBaseDir.Location = new System.Drawing.Point(21, 153);
-            txtTargetBaseDir.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            txtTargetBaseDir.Location = new System.Drawing.Point(39, 326);
+            txtTargetBaseDir.Margin = new System.Windows.Forms.Padding(2);
             txtTargetBaseDir.Name = "txtTargetBaseDir";
-            txtTargetBaseDir.Size = new System.Drawing.Size(472, 23);
+            txtTargetBaseDir.Size = new System.Drawing.Size(873, 39);
             txtTargetBaseDir.TabIndex = 1;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new System.Drawing.Point(21, 223);
-            listBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            listBox1.Location = new System.Drawing.Point(39, 476);
+            listBox1.Margin = new System.Windows.Forms.Padding(2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new System.Drawing.Size(515, 169);
+            listBox1.Size = new System.Drawing.Size(953, 356);
             listBox1.TabIndex = 2;
             // 
             // menuStrip1
@@ -108,8 +109,7 @@
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuFile });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            menuStrip1.Size = new System.Drawing.Size(529, 24);
+            menuStrip1.Size = new System.Drawing.Size(1065, 40);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -117,13 +117,13 @@
             // 
             toolStripMenuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripOpenOrder, toolStriDisplayOrder, toolStripEdtTast });
             toolStripMenuFile.Name = "toolStripMenuFile";
-            toolStripMenuFile.Size = new System.Drawing.Size(37, 22);
+            toolStripMenuFile.Size = new System.Drawing.Size(71, 36);
             toolStripMenuFile.Text = "File";
             // 
             // toolStripOpenOrder
             // 
             toolStripOpenOrder.Name = "toolStripOpenOrder";
-            toolStripOpenOrder.Size = new System.Drawing.Size(208, 22);
+            toolStripOpenOrder.Size = new System.Drawing.Size(417, 44);
             toolStripOpenOrder.Text = "Backup-Auftrag öffnen";
             toolStripOpenOrder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             toolStripOpenOrder.Click += toolStripOpenOrder_Click;
@@ -131,23 +131,23 @@
             // toolStriDisplayOrder
             // 
             toolStriDisplayOrder.Name = "toolStriDisplayOrder";
-            toolStriDisplayOrder.Size = new System.Drawing.Size(208, 22);
+            toolStriDisplayOrder.Size = new System.Drawing.Size(417, 44);
             toolStriDisplayOrder.Text = "Backup-Auftrag anzeigen";
             toolStriDisplayOrder.Click += toolStriDisplayOrder_Click;
             // 
             // toolStripEdtTast
             // 
             toolStripEdtTast.Name = "toolStripEdtTast";
-            toolStripEdtTast.Size = new System.Drawing.Size(208, 22);
+            toolStripEdtTast.Size = new System.Drawing.Size(417, 44);
             toolStripEdtTast.Text = "toolStripEditTast";
             toolStripEdtTast.Click += toolStripEdtTast_Click;
             // 
             // btnStartBackup
             // 
-            btnStartBackup.Location = new System.Drawing.Point(25, 28);
-            btnStartBackup.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnStartBackup.Location = new System.Drawing.Point(46, 60);
+            btnStartBackup.Margin = new System.Windows.Forms.Padding(2);
             btnStartBackup.Name = "btnStartBackup";
-            btnStartBackup.Size = new System.Drawing.Size(143, 21);
+            btnStartBackup.Size = new System.Drawing.Size(266, 45);
             btnStartBackup.TabIndex = 4;
             btnStartBackup.Text = "Start Backup";
             btnStartBackup.UseVisualStyleBackColor = true;
@@ -155,20 +155,20 @@
             // 
             // button2
             // 
-            button2.Location = new System.Drawing.Point(462, 67);
-            button2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            button2.Location = new System.Drawing.Point(858, 143);
+            button2.Margin = new System.Windows.Forms.Padding(2);
             button2.Name = "button2";
-            button2.Size = new System.Drawing.Size(3, 3);
+            button2.Size = new System.Drawing.Size(6, 6);
             button2.TabIndex = 5;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
             // 
             // btnTests
             // 
-            btnTests.Location = new System.Drawing.Point(473, 36);
-            btnTests.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnTests.Location = new System.Drawing.Point(878, 77);
+            btnTests.Margin = new System.Windows.Forms.Padding(2);
             btnTests.Name = "btnTests";
-            btnTests.Size = new System.Drawing.Size(64, 19);
+            btnTests.Size = new System.Drawing.Size(119, 41);
             btnTests.TabIndex = 8;
             btnTests.Text = "Write Cfg";
             btnTests.UseVisualStyleBackColor = true;
@@ -176,10 +176,10 @@
             // 
             // btnTest2
             // 
-            btnTest2.Location = new System.Drawing.Point(473, 19);
-            btnTest2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnTest2.Location = new System.Drawing.Point(878, 41);
+            btnTest2.Margin = new System.Windows.Forms.Padding(2);
             btnTest2.Name = "btnTest2";
-            btnTest2.Size = new System.Drawing.Size(61, 15);
+            btnTest2.Size = new System.Drawing.Size(113, 32);
             btnTest2.TabIndex = 9;
             btnTest2.Text = "Read Cfg";
             btnTest2.UseVisualStyleBackColor = true;
@@ -188,20 +188,20 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(21, 137);
-            label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label2.Location = new System.Drawing.Point(39, 292);
+            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(186, 15);
+            label2.Size = new System.Drawing.Size(377, 32);
             label2.TabIndex = 7;
             label2.Text = "Target-Verzeichnis für das Backup:";
             // 
             // chkSingleStep
             // 
             chkSingleStep.AutoSize = true;
-            chkSingleStep.Location = new System.Drawing.Point(21, 178);
-            chkSingleStep.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            chkSingleStep.Location = new System.Drawing.Point(39, 380);
+            chkSingleStep.Margin = new System.Windows.Forms.Padding(2);
             chkSingleStep.Name = "chkSingleStep";
-            chkSingleStep.Size = new System.Drawing.Size(84, 19);
+            chkSingleStep.Size = new System.Drawing.Size(166, 36);
             chkSingleStep.TabIndex = 10;
             chkSingleStep.Text = "Single Step";
             chkSingleStep.UseVisualStyleBackColor = true;
@@ -209,20 +209,20 @@
             // 
             // btnSelectSourcePath
             // 
-            btnSelectSourcePath.Location = new System.Drawing.Point(501, 115);
-            btnSelectSourcePath.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnSelectSourcePath.Location = new System.Drawing.Point(930, 245);
+            btnSelectSourcePath.Margin = new System.Windows.Forms.Padding(2);
             btnSelectSourcePath.Name = "btnSelectSourcePath";
-            btnSelectSourcePath.Size = new System.Drawing.Size(33, 17);
+            btnSelectSourcePath.Size = new System.Drawing.Size(61, 36);
             btnSelectSourcePath.TabIndex = 11;
             btnSelectSourcePath.Text = ". . .";
             btnSelectSourcePath.UseVisualStyleBackColor = true;
             // 
             // btnSelectTargetPath
             // 
-            btnSelectTargetPath.Location = new System.Drawing.Point(501, 153);
-            btnSelectTargetPath.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnSelectTargetPath.Location = new System.Drawing.Point(930, 326);
+            btnSelectTargetPath.Margin = new System.Windows.Forms.Padding(2);
             btnSelectTargetPath.Name = "btnSelectTargetPath";
-            btnSelectTargetPath.Size = new System.Drawing.Size(33, 17);
+            btnSelectTargetPath.Size = new System.Drawing.Size(61, 36);
             btnSelectTargetPath.TabIndex = 11;
             btnSelectTargetPath.Text = ". . .";
             btnSelectTargetPath.UseVisualStyleBackColor = true;
@@ -231,20 +231,20 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(21, 195);
-            label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label3.Location = new System.Drawing.Point(39, 416);
+            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(127, 15);
+            label3.Size = new System.Drawing.Size(258, 32);
             label3.TabIndex = 12;
             label3.Text = "No of files in directory:";
             // 
             // lblFileCounter
             // 
             lblFileCounter.AutoSize = true;
-            lblFileCounter.Location = new System.Drawing.Point(154, 195);
-            lblFileCounter.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            lblFileCounter.Location = new System.Drawing.Point(286, 416);
+            lblFileCounter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblFileCounter.Name = "lblFileCounter";
-            lblFileCounter.Size = new System.Drawing.Size(17, 15);
+            lblFileCounter.Size = new System.Drawing.Size(34, 32);
             lblFileCounter.TabIndex = 13;
             lblFileCounter.Text = "--";
             // 
@@ -256,10 +256,10 @@
             // chkAutomatic
             // 
             chkAutomatic.AutoSize = true;
-            chkAutomatic.Location = new System.Drawing.Point(25, 53);
-            chkAutomatic.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            chkAutomatic.Location = new System.Drawing.Point(46, 113);
+            chkAutomatic.Margin = new System.Windows.Forms.Padding(2);
             chkAutomatic.Name = "chkAutomatic";
-            chkAutomatic.Size = new System.Drawing.Size(52, 19);
+            chkAutomatic.Size = new System.Drawing.Size(97, 36);
             chkAutomatic.TabIndex = 15;
             chkAutomatic.Text = "Auto";
             chkAutomatic.UseVisualStyleBackColor = true;
@@ -268,40 +268,40 @@
             // lblCpuUsage
             // 
             lblCpuUsage.AutoSize = true;
-            lblCpuUsage.Location = new System.Drawing.Point(516, 195);
-            lblCpuUsage.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            lblCpuUsage.Location = new System.Drawing.Point(958, 416);
+            lblCpuUsage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblCpuUsage.Name = "lblCpuUsage";
-            lblCpuUsage.Size = new System.Drawing.Size(17, 15);
+            lblCpuUsage.Size = new System.Drawing.Size(34, 32);
             lblCpuUsage.TabIndex = 13;
             lblCpuUsage.Text = "--";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(440, 195);
-            label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label5.Location = new System.Drawing.Point(817, 416);
+            label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(68, 15);
+            label5.Size = new System.Drawing.Size(135, 32);
             label5.TabIndex = 12;
             label5.Text = "CPU Usage:";
             // 
             // lblFilesChanged
             // 
             lblFilesChanged.AutoSize = true;
-            lblFilesChanged.Location = new System.Drawing.Point(326, 195);
-            lblFilesChanged.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            lblFilesChanged.Location = new System.Drawing.Point(605, 416);
+            lblFilesChanged.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblFilesChanged.Name = "lblFilesChanged";
-            lblFilesChanged.Size = new System.Drawing.Size(17, 15);
+            lblFilesChanged.Size = new System.Drawing.Size(34, 32);
             lblFilesChanged.TabIndex = 13;
             lblFilesChanged.Text = "--";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(207, 195);
-            label6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label6.Location = new System.Drawing.Point(384, 416);
+            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(113, 15);
+            label6.Size = new System.Drawing.Size(229, 32);
             label6.TabIndex = 12;
             label6.Text = "No of files changed:";
             // 
@@ -324,6 +324,7 @@
             // 
             // toolStripComboBox1
             // 
+            toolStripComboBox1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             toolStripComboBox1.Name = "toolStripComboBox1";
             toolStripComboBox1.Size = new System.Drawing.Size(121, 49);
             // 
@@ -334,10 +335,10 @@
             // chkDisplayAllFiles
             // 
             chkDisplayAllFiles.AutoSize = true;
-            chkDisplayAllFiles.Location = new System.Drawing.Point(199, 37);
-            chkDisplayAllFiles.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            chkDisplayAllFiles.Location = new System.Drawing.Point(370, 79);
+            chkDisplayAllFiles.Margin = new System.Windows.Forms.Padding(2);
             chkDisplayAllFiles.Name = "chkDisplayAllFiles";
-            chkDisplayAllFiles.Size = new System.Drawing.Size(100, 19);
+            chkDisplayAllFiles.Size = new System.Drawing.Size(198, 36);
             chkDisplayAllFiles.TabIndex = 17;
             chkDisplayAllFiles.Text = "Dispay all files";
             chkDisplayAllFiles.UseVisualStyleBackColor = true;
@@ -346,10 +347,10 @@
             // chkDisplayChangedFiles
             // 
             chkDisplayChangedFiles.AutoSize = true;
-            chkDisplayChangedFiles.Location = new System.Drawing.Point(199, 56);
-            chkDisplayChangedFiles.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            chkDisplayChangedFiles.Location = new System.Drawing.Point(370, 119);
+            chkDisplayChangedFiles.Margin = new System.Windows.Forms.Padding(2);
             chkDisplayChangedFiles.Name = "chkDisplayChangedFiles";
-            chkDisplayChangedFiles.Size = new System.Drawing.Size(137, 19);
+            chkDisplayChangedFiles.Size = new System.Drawing.Size(272, 36);
             chkDisplayChangedFiles.TabIndex = 18;
             chkDisplayChangedFiles.Text = "Display changed files";
             chkDisplayChangedFiles.UseVisualStyleBackColor = true;
@@ -358,10 +359,10 @@
             // checkBox4
             // 
             checkBox4.AutoSize = true;
-            checkBox4.Location = new System.Drawing.Point(199, 75);
-            checkBox4.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            checkBox4.Location = new System.Drawing.Point(370, 160);
+            checkBox4.Margin = new System.Windows.Forms.Padding(2);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new System.Drawing.Size(83, 19);
+            checkBox4.Size = new System.Drawing.Size(159, 36);
             checkBox4.TabIndex = 18;
             checkBox4.Text = "checkBox4";
             checkBox4.UseVisualStyleBackColor = true;
@@ -369,20 +370,20 @@
             // lblTime
             // 
             lblTime.AutoSize = true;
-            lblTime.Location = new System.Drawing.Point(448, 89);
-            lblTime.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            lblTime.Location = new System.Drawing.Point(832, 190);
+            lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             lblTime.Name = "lblTime";
-            lblTime.Size = new System.Drawing.Size(17, 15);
+            lblTime.Size = new System.Drawing.Size(34, 32);
             lblTime.TabIndex = 13;
             lblTime.Text = "--";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(291, 89);
-            label7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label7.Location = new System.Drawing.Point(540, 190);
+            label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(151, 15);
+            label7.Size = new System.Drawing.Size(305, 32);
             label7.TabIndex = 12;
             label7.Text = "Zeit bis zum nächsten Lauf:";
             // 
@@ -393,10 +394,10 @@
             // 
             // txtTime
             // 
-            txtTime.Location = new System.Drawing.Point(441, 60);
-            txtTime.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            txtTime.Location = new System.Drawing.Point(819, 128);
+            txtTime.Margin = new System.Windows.Forms.Padding(2);
             txtTime.Name = "txtTime";
-            txtTime.Size = new System.Drawing.Size(53, 23);
+            txtTime.Size = new System.Drawing.Size(95, 39);
             txtTime.TabIndex = 1;
             txtTime.Text = "10";
             txtTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -404,19 +405,19 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(355, 61);
-            label8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            label8.Location = new System.Drawing.Point(659, 130);
+            label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(75, 15);
+            label8.Size = new System.Drawing.Size(150, 32);
             label8.TabIndex = 7;
             label8.Text = "Wartezeit [s]:";
             // 
             // btnSetTime
             // 
-            btnSetTime.Location = new System.Drawing.Point(502, 59);
-            btnSetTime.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnSetTime.Location = new System.Drawing.Point(932, 126);
+            btnSetTime.Margin = new System.Windows.Forms.Padding(2);
             btnSetTime.Name = "btnSetTime";
-            btnSetTime.Size = new System.Drawing.Size(32, 19);
+            btnSetTime.Size = new System.Drawing.Size(59, 41);
             btnSetTime.TabIndex = 19;
             btnSetTime.Text = "OK";
             btnSetTime.UseVisualStyleBackColor = true;
@@ -424,10 +425,10 @@
             // 
             // btnSkip
             // 
-            btnSkip.Location = new System.Drawing.Point(495, 86);
-            btnSkip.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnSkip.Location = new System.Drawing.Point(919, 183);
+            btnSkip.Margin = new System.Windows.Forms.Padding(2);
             btnSkip.Name = "btnSkip";
-            btnSkip.Size = new System.Drawing.Size(39, 21);
+            btnSkip.Size = new System.Drawing.Size(72, 45);
             btnSkip.TabIndex = 20;
             btnSkip.Text = "Skip";
             btnSkip.UseVisualStyleBackColor = true;
@@ -435,20 +436,26 @@
             // 
             // btnStopBackup
             // 
-            btnStopBackup.Location = new System.Drawing.Point(25, 76);
-            btnStopBackup.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            btnStopBackup.Location = new System.Drawing.Point(46, 162);
+            btnStopBackup.Margin = new System.Windows.Forms.Padding(2);
             btnStopBackup.Name = "btnStopBackup";
-            btnStopBackup.Size = new System.Drawing.Size(143, 21);
+            btnStopBackup.Size = new System.Drawing.Size(266, 45);
             btnStopBackup.TabIndex = 21;
             btnStopBackup.Text = "Stop Backup";
             btnStopBackup.UseVisualStyleBackColor = true;
             btnStopBackup.Click += btnStopBackup_Click;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.Icon = (System.Drawing.Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "Backup-Programm";
+            notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(529, 368);
+            ClientSize = new System.Drawing.Size(1065, 867);
             Controls.Add(btnStopBackup);
             Controls.Add(btnSkip);
             Controls.Add(btnSetTime);
@@ -479,10 +486,11 @@
             Controls.Add(button1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            Margin = new System.Windows.Forms.Padding(2);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            Resize += Form1_Resize;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -532,6 +540,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStriDisplayOrder;
         private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.Button btnStopBackup;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

@@ -43,7 +43,8 @@ namespace Backup_Programm
         bool FlagListChangedFiles = false;
         int WaitingTime = 10;
         bool FlagSkip = false;
-        bool FlagStop = false;  
+        bool FlagStop = false;
+        bool FlagMinimized = false; 
 
 
         int FileCounter = 0;
@@ -84,6 +85,8 @@ namespace Backup_Programm
                 SingleStep = Globals.CfgFile.SingleStep;
                 chkSingleStep.Checked = SingleStep;
 
+                FlagMinimized = Globals.CfgFile.Minimized;
+
                 FlagAutoLoop = Globals.CfgFile.Flags.FlagAutoLoop;
                 chkAutomatic.Checked = FlagAutoLoop;
 
@@ -104,6 +107,26 @@ namespace Backup_Programm
             cpuCounter.CategoryName = "Processor";
             cpuCounter.CounterName = "% Processor Time";
             cpuCounter.InstanceName = "_Total"; // "_Total" entspricht der gesamten CPU Auslastung, Bei Computern mit mehr als 1 logischem Prozessor: "0" dem ersten Core, "1" dem zweiten...
+
+            if (FlagMinimized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            //if the form is minimized
+            //hide it from the task bar
+            //and show the system tray icon (represented by the NotifyIcon control)
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon1.Visible = true;
+
+                Globals.CfgFile.Minimized = true;
+                MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
+
+            }
         }
 
         private void chkSingleStep_CheckedChanged(object sender, EventArgs e)
@@ -242,7 +265,7 @@ namespace Backup_Programm
             foreach (string line in Globals.CfgFile.BackupList)
             {
                 if (FlagStop)
-                { 
+                {
                     break;
                 }
 
@@ -283,7 +306,7 @@ namespace Backup_Programm
             }
         }
 
-         private void CopyFile(FileInfo SourceFile, FileInfo TargetFile)
+        private void CopyFile(FileInfo SourceFile, FileInfo TargetFile)
         {
             if (!TargetFile.Exists)
             {
@@ -360,7 +383,7 @@ namespace Backup_Programm
             Globals.CfgFile.Anzahl = 123;
             Globals.CfgFile.BasisDirTarget = BasisDirTarget;
 
-           Globals.CfgFile.BackupList.Add(BasisDirTarget);
+            Globals.CfgFile.BackupList.Add(BasisDirTarget);
 
             Globals.CfgFile.Flags.FlagAutoStart = true;
             Globals.CfgFile.Flags.FlagDisplayAllFiles = false;
@@ -535,6 +558,18 @@ namespace Backup_Programm
             btnStopBackup.BackColor = Color.Red;
             FlagAutoLoop = false;
             chkAutomatic.Checked = FlagAutoLoop;
+        }
+
+        // Doppelklicken des Tray-Icons
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon1.Visible = false;
+
+            Globals.CfgFile.Minimized = false;
+            MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
+
         }
     }
 }
