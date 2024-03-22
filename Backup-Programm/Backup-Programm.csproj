@@ -5,6 +5,9 @@
     <TargetFramework>net8.0-windows7.0</TargetFramework>
     <RootNamespace>Backup_Programm</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+      <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+    <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
 </Project>

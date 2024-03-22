@@ -4,9 +4,11 @@
 // WalkDirectory    https://learn.microsoft.com/de-DE/dotnet/csharp/programming-guide/file-system/how-to-iterate-through-a-directory-tree
 // Dir der Anw.     https://dotnet-snippets.de/snippet/das-verzeichnis-der-anwendung-ermitteln/23?utm_content=cmp-true
 // File Copy        https://dotnet-snippets.de/snippet/dateilisten-kopieren/1315
+// Designer HighDpi mode    https://github.com/dotnet/winforms/blob/main/docs/designer/designer-high-dpi-mode.md
 
 //  Backup: z.B. von D:\Eigene Dateien\Test\Text Folder 1      --->   D:\Test Backup Server\Test\Text Folder 1
 //  BasisDirBackup: D:\Test Backup Server\
+//
 
 using System;
 using System.Collections.Generic;
