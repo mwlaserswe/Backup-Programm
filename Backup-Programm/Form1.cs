@@ -281,9 +281,52 @@ namespace Backup_Programm
                         FileCounter = 0;
                         DirectoryInfo BackupListEntry = new DirectoryInfo(line);
 
-                        WalkDirectoryTree(BackupListEntry);
 
-                        Globals.CfgFile.CurrentEntry = counter + 1;
+
+                        //if (Directory.Exists(BackupListEntry.))
+                        //{
+                        //    Console.WriteLine("Der angegebene Pfad ist ein Verzeichnis.");
+                        //}
+                        //else if(File.Exists(BackupListEntry))
+                        //{
+                        //    Console.WriteLine("Der angegebene Pfad ist eine Datei.");
+                        //}
+                        //else
+                        //{
+                        //    Console.WriteLine("Der angegebene Pfad existiert nicht.");
+                        //}
+
+                        //if (BackupListEntry.Exists)
+                        //{
+                        //    if (BackupListEntry.Attributes == FileAttributes.Directory)
+                        //    {
+                        //        WalkDirectoryTree(BackupListEntry);
+                        //    }
+                        //    else
+                        //    {
+                        //        // Der Eintrag ist ein File und kein Verzeichnis
+                        //        int a = 2 + 1;
+                        //    }
+                        //}
+
+                        if (Directory.Exists(line))
+                        {
+                            WalkDirectoryTree(BackupListEntry);
+                        }
+                        else if (File.Exists(line))
+                        {
+                            int a = 2 + 1;
+                        }
+                        else
+                        {
+                            int a = 2 + 1;
+                        }
+
+
+
+
+
+                            Globals.CfgFile.CurrentEntry = counter + 1;
                         MWTools.Tools.SerializeToXmlFile(Globals.CfgFile, Globals.BackupTask, Encoding.Default);
 
                         if (SingleStep)

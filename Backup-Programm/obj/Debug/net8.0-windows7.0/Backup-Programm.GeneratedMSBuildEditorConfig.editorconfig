@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Backup_Programm
-build_property.ProjectDir = D:\Eigene Dateien\Projekte privat\Visual Studio\Backup-Programm-2022\Backup-Programm\
+build_property.ProjectDir = D:\Eigene Dateien\Projekte privat\VisualStudio\Backup-Programm 2022\Backup-Programm\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
