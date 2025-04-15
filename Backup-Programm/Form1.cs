@@ -387,9 +387,19 @@ namespace Backup_Programm
                         listBox1.SelectedIndex = listBox1.Items.Count - 1;
                         listBox1.Update();
                     }
-
-                    TargetFile.Delete();
-                    SourceFile.CopyTo(TargetFile.FullName);
+                    try
+                    {
+                        TargetFile.Delete();
+                        SourceFile.CopyTo(TargetFile.FullName);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Falls bei Löschen oder Kopieren irgend ein Fehler auftritt,
+                        // kommt das Programm nicht zum Stillstand
+                        // Fehler in "Errorlog.txt" protokollieren
+                        string errorLogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Errorlog.txt");
+                        File.AppendAllText(errorLogPath, $"Fehler bei Datei: {TargetFile.FullName} - {ex.Message}{Environment.NewLine}");
+                    }
                 }
 
             }
