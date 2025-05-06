@@ -10,6 +10,7 @@
 - Bei großen Dateien (z.B VMs) wäre eine Progressbar schön.
 - Bereinigung: Dateien im Backup löschen, die es im Sourceverzeichnis nicht mehr gibt.
   Wichtig ist das auch bei verschobenen Dateien.
+- Einstellungen in der XML-Datei sollten beim Laden übernommen werden
 
 Autostart:
 - Windows-Taste + r			(= Aufführen)
